@@ -119,8 +119,6 @@
       { "bracketMax": 612350, "rate": 0.35 },
       { "bracketMax": "unlimited", "rate": 0.37 }
     ]
-  },
-
-
+  }
 
 }
