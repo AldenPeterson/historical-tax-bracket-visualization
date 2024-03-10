@@ -1,0 +1,67 @@
+{
+  "2024": {
+    "single:": [
+      { "bracketMax": 200000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ],
+    "default": [
+      { "bracketMax": 250000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ]
+  },
+
+  "2023": {
+    "single:": [
+      { "bracketMax": 200000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ],
+    "default": [
+      { "bracketMax": 250000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ]
+  },
+
+  "2022": {
+    "single:": [
+      { "bracketMax": 200000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ],
+    "default": [
+      { "bracketMax": 250000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ]
+  },
+
+  "2021": {
+    "single:": [
+      { "bracketMax": 200000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ],
+    "default": [
+      { "bracketMax": 250000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ]
+  },
+
+  "2020": {
+    "single:": [
+      { "bracketMax": 200000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ],
+    "default": [
+      { "bracketMax": 250000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ]
+  },
+
+  "2019": {
+    "single:": [
+      { "bracketMax": 200000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ],
+    "default": [
+      { "bracketMax": 250000, "rate": 0.0145 },
+      { "bracketMax": "unlimited", "rate": 0.0235 }
+    ]
+  }
+}

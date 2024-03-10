@@ -1,0 +1,43 @@
+{
+  "2024": {
+    "default": [
+      { "bracketMax": 168600, "rate": 0.062 },
+      { "bracketMax": "unlimited", "rate": 0 }
+    ]
+  },
+
+  "2023": {
+    "default": [
+      { "bracketMax": 160200, "rate": 0.062 },
+      { "bracketMax": "unlimited", "rate": 0 }
+    ]
+  },
+
+  "2022": {
+    "default": [
+      { "bracketMax": 147000, "rate": 0.062 },
+      { "bracketMax": "unlimited", "rate": 0 }
+    ]
+  },
+
+  "2021": {
+    "default": [
+      { "bracketMax": 142800, "rate": 0.062 },
+      { "bracketMax": "unlimited", "rate": 0 }
+    ]
+  },
+
+  "2020": {
+    "default": [
+      { "bracketMax": 137700, "rate": 0.062 },
+      { "bracketMax": "unlimited", "rate": 0 }
+    ]
+  },
+
+  "2019": {
+    "default": [
+      { "bracketMax": 132900, "rate": 0.062 },
+      { "bracketMax": "unlimited", "rate": 0 }
+    ]
+  }
+}

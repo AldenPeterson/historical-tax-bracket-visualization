@@ -1,0 +1,126 @@
+{
+  "2024": {
+    "single": [
+      { "bracketMax": 11600, "rate": 0.1 },
+      { "bracketMax": 47150, "rate": 0.12 },
+      { "bracketMax": 100525, "rate": 0.22 },
+      { "bracketMax": 191950, "rate": 0.24 },
+      { "bracketMax": 243725, "rate": 0.32 },
+      { "bracketMax": 609350, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ],
+    "mfj": [
+      { "bracketMax": 23200, "rate": 0.1 },
+      { "bracketMax": 94300, "rate": 0.12 },
+      { "bracketMax": 201050, "rate": 0.22 },
+      { "bracketMax": 383900, "rate": 0.24 },
+      { "bracketMax": 487450, "rate": 0.32 },
+      { "bracketMax": 731200, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ]
+  },
+  "2023": {
+    "single": [
+      { "bracketMax": 11000, "rate": 0.1 },
+      { "bracketMax": 44725, "rate": 0.12 },
+      { "bracketMax": 95375, "rate": 0.22 },
+      { "bracketMax": 182100, "rate": 0.24 },
+      { "bracketMax": 231250, "rate": 0.32 },
+      { "bracketMax": 578125, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ],
+    "mfj": [
+      { "bracketMax": 22000, "rate": 0.1 },
+      { "bracketMax": 89450, "rate": 0.12 },
+      { "bracketMax": 190750, "rate": 0.22 },
+      { "bracketMax": 364200, "rate": 0.24 },
+      { "bracketMax": 462500, "rate": 0.32 },
+      { "bracketMax": 693750, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ]
+  },
+  "2022": {
+    "single": [
+      { "bracketMax": 10275, "rate": 0.1 },
+      { "bracketMax": 41775, "rate": 0.12 },
+      { "bracketMax": 89075, "rate": 0.22 },
+      { "bracketMax": 170050, "rate": 0.24 },
+      { "bracketMax": 215950, "rate": 0.32 },
+      { "bracketMax": 539900, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ],
+    "mfj": [
+      { "bracketMax": 20550, "rate": 0.1 },
+      { "bracketMax": 83550, "rate": 0.12 },
+      { "bracketMax": 178150, "rate": 0.22 },
+      { "bracketMax": 340100, "rate": 0.24 },
+      { "bracketMax": 431900, "rate": 0.32 },
+      { "bracketMax": 647850, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ]
+  },
+  "2021": {
+    "single": [
+      { "bracketMax": 9950, "rate": 0.1 },
+      { "bracketMax": 40525, "rate": 0.12 },
+      { "bracketMax": 86375, "rate": 0.22 },
+      { "bracketMax": 164925, "rate": 0.24 },
+      { "bracketMax": 209425, "rate": 0.32 },
+      { "bracketMax": 523600, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ],
+    "mfj": [
+      { "bracketMax": 19900, "rate": 0.1 },
+      { "bracketMax": 81050, "rate": 0.12 },
+      { "bracketMax": 172750, "rate": 0.22 },
+      { "bracketMax": 329850, "rate": 0.24 },
+      { "bracketMax": 418850, "rate": 0.32 },
+      { "bracketMax": 628301, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ]
+  },
+  "2020": {
+    "single": [
+      { "bracketMax": 9875, "rate": 0.1 },
+      { "bracketMax": 40125, "rate": 0.12 },
+      { "bracketMax": 85525, "rate": 0.22 },
+      { "bracketMax": 163300, "rate": 0.24 },
+      { "bracketMax": 207350, "rate": 0.32 },
+      { "bracketMax": 518400, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ],
+    "mfj": [
+      { "bracketMax": 19750, "rate": 0.1 },
+      { "bracketMax": 80250, "rate": 0.12 },
+      { "bracketMax": 171050, "rate": 0.22 },
+      { "bracketMax": 326600, "rate": 0.24 },
+      { "bracketMax": 414700, "rate": 0.32 },
+      { "bracketMax": 622050, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ]
+  },
+
+  "2019": {
+    "single": [
+      { "bracketMax": 9700, "rate": 0.1 },
+      { "bracketMax": 39475, "rate": 0.12 },
+      { "bracketMax": 84200, "rate": 0.22 },
+      { "bracketMax": 160725, "rate": 0.24 },
+      { "bracketMax": 204100, "rate": 0.32 },
+      { "bracketMax": 510300, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ],
+    "mfj": [
+      { "bracketMax": 19400, "rate": 0.1 },
+      { "bracketMax": 78950, "rate": 0.12 },
+      { "bracketMax": 168400, "rate": 0.22 },
+      { "bracketMax": 321450, "rate": 0.24 },
+      { "bracketMax": 408200, "rate": 0.32 },
+      { "bracketMax": 612350, "rate": 0.35 },
+      { "bracketMax": "unlimited", "rate": 0.37 }
+    ]
+  },
+
+
+
+}
