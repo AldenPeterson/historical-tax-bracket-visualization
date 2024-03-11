@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
+import CurrencyInput from 'react-currency-input-field';
 
 interface InputBoxProps {
   label: string;
   value: number;
-  onChange: (value: number) => void;
+  setIncome: (value: number) => void;
 }
 
-const InputBox: FC<InputBoxProps> = ({ value, onChange , label}) => {
+const InputBox: FC<InputBoxProps> = ({ value, setIncome , label}) => {
   const inputStyle = {
     width: '200px',
     padding: '10px',
@@ -16,20 +17,34 @@ const InputBox: FC<InputBoxProps> = ({ value, onChange , label}) => {
   };
   const divStyle = {
     textAlign: 'left' as 'left',
+    paddingTop: '15px',
+    paddingBottom: '15px',
   };
 
   const labelStyle = {
-    padding: '10px',
+    paddingRight: '15px',
+    midWidth: '250px',
+    paddingTop: '10px',
+    paddingBottom: '10px',
   };
+
+  const updateIncome = (value: string | undefined) => {
+    if (value !== undefined) {
+      setIncome(Number(value));
+    }
+    
+  }
 
   return (
     <div style = {divStyle}>
         <label style={labelStyle}>{label}</label>
-        <input
-        style={inputStyle}
-        type="number"
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
+        <CurrencyInput
+          style={inputStyle}
+          allowDecimals={false}
+          defaultValue={value}
+          prefix={'$'}
+          onValueChange={updateIncome}
+          step={1000}
         />
     </div>
   );

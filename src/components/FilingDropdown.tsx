@@ -17,7 +17,8 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
           borderColor: '#e0e0e0',
           minHeight: '30px',
           height: '30px',
-          boxShadow: 'none'
+          boxShadow: 'none',
+          width: '200px'
         }),
         menu: (provided) => ({
           ...provided,
@@ -27,17 +28,48 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
         singleValue: (provided) => ({
           ...provided,
           color: '#333',
+          textAlign: 'center',
+          display: 'flex',
+          alignItems: 'center',
         }),
+        option: (provided) => ({
+          ...provided,
+          color: '#333',
+          cursor: 'pointer',
+          textAlign: 'center',
+          display: 'flex',
+          alignItems: 'center',
+        })      
       };
-
+    const handleOptionChange = (event) => {
+        onChange(event);
+        setSelectedOption(event.target)
+    };
+    const divStyle = {
+      textAlign: 'left' as 'left',
+      display: 'flex',
+      alignItems: 'center',
+      paddingTop: '15px',
+      paddingBottom: '15px',
+    };
+    const labelStyle = {
+      paddingRight: '15px',
+      midWidth: '250px',
       
+    };
+  
     return (
-      <Select
-        value={selectedOption}
-        onChange={onChange}
-        options={FilingStatuses}
-        styles={customStyles}
-      />
+      <div style = {divStyle}>
+      <label style={labelStyle}>Filing Status</label>
+
+        <Select
+          value={selectedOption}
+          onChange={handleOptionChange}
+          options={FilingStatuses}
+          styles={customStyles}
+        />
+      </div>
+
     );
   };
   

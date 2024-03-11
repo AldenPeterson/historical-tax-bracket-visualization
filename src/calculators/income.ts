@@ -34,7 +34,7 @@ const getTaxDataset = (income: number, filingStatus: string, brackets: any) => {
             }
             else if (income <= currentBracketMax) {
                 const incrementalTax = (income -  priorBracketMax) * currentBracketRate
-                console.log(`Adding final incremental tax: ${incrementalTax} to year ${year} for filing status ${filingStatus} and income ${income} at index ${index}`)
+                // console.log(`Adding final incremental tax: ${incrementalTax} to year ${year} for filing status ${filingStatus} and income ${income} at index ${index}`)
                 yearTaxOwed += incrementalTax
                 break;
 

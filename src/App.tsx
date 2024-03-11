@@ -9,16 +9,16 @@ import FilingDropdown from './components/FilingDropdown'
 import FilingStatuses from './utilities/FilingStatus'
 
 function App() {
-  const [maxValue, setMaxValue] = useState(1000);
+  const [income, setIncome] = useState(75000  );
   const [filingStatus, setFilingStatus] = useState(FilingStatuses[0]);
 
 
   return (
     <>
 
-      <InputBox value={maxValue} label="2024 Income" onChange={setMaxValue} />
+      <InputBox value={income} label="2024 Income" setIncome={setIncome} />
       <FilingDropdown onChange={setFilingStatus}/>
-      <TaxChart income={maxValue} filingStatus={filingStatus.value}/>
+      <TaxChart income={income} filingStatus={filingStatus}/>
 
 
     </>
