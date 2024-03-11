@@ -178,6 +178,7 @@ export const data = (
       fill: "false",
       yAxisID: "y1",
       pointRadius: 0,
+      z:1
     });
   }
 
