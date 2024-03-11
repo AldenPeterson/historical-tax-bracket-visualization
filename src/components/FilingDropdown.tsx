@@ -15,8 +15,8 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
           ...provided,
           backgroundColor: '#f5f5f5',
           borderColor: '#e0e0e0',
-          minHeight: '30px',
-          height: '30px',
+          minHeight: '40px',
+          height: '40px',
           boxShadow: 'none',
           width: '200px'
         }),
