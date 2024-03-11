@@ -17,9 +17,10 @@ export const yearlyLabels = () => {
 export const getTaxDataset = (
   taxType: string,
   filingStatus: string,
-  income: number
+  income: number,
+  marginalRate: boolean = false
 ) => {
-  let taxesOwed: number[] = [];
+  let datasetSeries: number[] = [];
 
   for (let year of yearlyLabels()) {
     // console.log("Filtering for year", year, "filing status", filingStatus, "and tax type", taxType)
@@ -45,10 +46,11 @@ export const getTaxDataset = (
 
     const inflationAdjustedIncome = income * yearInflationMultiplier;
     console.log("Inflation adjusted income for year", year, "is", inflationAdjustedIncome)
+    let currentBracketRate = 0;
     for (let index = 0; index < matchingBrackets.length; index++) {
       let priorBracketMax = 0;
       const currentBracketMax = Number(matchingBrackets[index].bracketMax);
-      const currentBracketRate = Number(matchingBrackets[index].rate);
+      currentBracketRate = Number(matchingBrackets[index].rate);
       if (index > 0) {
         priorBracketMax = Number(matchingBrackets[index - 1].bracketMax);
       }
@@ -66,10 +68,16 @@ export const getTaxDataset = (
       }
     }
     yearTaxOwed = yearTaxOwed / yearInflationMultiplier;
-    taxesOwed.push(yearTaxOwed);
+    if (marginalRate) {
+        datasetSeries.push(currentBracketRate);
+    }
+    else {
+      datasetSeries.push(yearTaxOwed);
+
+    }
   }
 
-  return taxesOwed;
+  return datasetSeries;
 };
 
 
