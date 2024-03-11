@@ -3,6 +3,9 @@ import taxData from "../data/taxes.json";
 import { TaxBracket } from "../types/TaxBracket";
 import inflationMultipliers from "../data/inflation-multipliers.json";
 
+interface InflationMultipliers {
+  [year: string]: string;
+}
 
 export const yearlyLabels = () => {
   const uniqueYears = [...new Set(taxData.map((item: TaxBracket) => item.year))];
@@ -36,7 +39,10 @@ export const getTaxDataset = (
   
     
     let yearTaxOwed = 0;
-    const yearInflationMultiplier = inflationMultipliers[year];
+
+
+    const yearInflationMultiplier = Number((inflationMultipliers as InflationMultipliers)[year]);
+
     const inflationAdjustedIncome = income * yearInflationMultiplier;
     console.log("Inflation adjusted income for year", year, "is", inflationAdjustedIncome)
     for (let index = 0; index < matchingBrackets.length; index++) {

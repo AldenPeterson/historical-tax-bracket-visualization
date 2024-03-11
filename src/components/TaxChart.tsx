@@ -31,7 +31,7 @@ interface TaxChartProps {
   filingStatus: any;
 }
 
-export const options = (income: number, filingStatus: string) => {
+export const options = (income: number, filingStatus: { value: string, label: string }) => {
   return {
     responsive: true,
     scales: {
@@ -53,8 +53,7 @@ export const options = (income: number, filingStatus: string) => {
   };
 };
 
-export const data = (income: number, filingStatus: string) => {
-  // const ssTaxes = getTaxDataset(income, filingStatus.value, ssBrackets);
+export const data = (income: number, filingStatus: { value: string, label: string }) => {
 console.log(yearlyLabels)
   return {
     labels: yearlyLabels(),

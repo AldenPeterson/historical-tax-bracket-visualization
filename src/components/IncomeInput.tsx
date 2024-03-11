@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 
 interface InputBoxProps {
@@ -6,6 +6,7 @@ interface InputBoxProps {
   value: number;
   setIncome: (value: number) => void;
 }
+
 
 const InputBox: FC<InputBoxProps> = ({ value, setIncome , label}) => {
   const inputStyle = {

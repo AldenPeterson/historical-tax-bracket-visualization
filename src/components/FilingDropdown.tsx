@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Select from 'react-select';
 
 import FilingStatuses from '../utilities/FilingStatus';
 
 interface FilingDropdownProps {
-    onChange: (value: string) => void;
+  value: {value: string, label: string};
+  onChange: any;
 }
 
 const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
     const [selectedOption, setSelectedOption] = React.useState(null);
-  
+
     const customStyles = {
-        control: (provided) => ({
+        control: (provided: any) => ({
           ...provided,
           backgroundColor: '#f5f5f5',
           borderColor: '#e0e0e0',
@@ -20,19 +21,19 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
           boxShadow: 'none',
           width: '200px'
         }),
-        menu: (provided) => ({
+        menu: (provided: any) => ({
           ...provided,
           color: '#333',
           cursor: 'pointer',
         }),
-        singleValue: (provided) => ({
+        singleValue: (provided: any) => ({
           ...provided,
           color: '#333',
           textAlign: 'center',
           display: 'flex',
           alignItems: 'center',
         }),
-        option: (provided) => ({
+        option: (provided: any) => ({
           ...provided,
           color: '#333',
           cursor: 'pointer',
@@ -41,7 +42,7 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
           alignItems: 'center',
         })      
       };
-    const handleOptionChange = (event) => {
+    const handleOptionChange = (event:any) => {
         onChange(event);
         setSelectedOption(event.target)
     };
