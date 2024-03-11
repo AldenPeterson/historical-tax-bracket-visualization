@@ -29,6 +29,8 @@ ChartJS.register(
 interface TaxChartProps {
   income: number;
   filingStatus: any;
+  includeSS: boolean;
+  includeFederalIncome: boolean;
 }
 
 export const options = (income: number, filingStatus: { value: string, label: string }) => {
@@ -53,34 +55,39 @@ export const options = (income: number, filingStatus: { value: string, label: st
   };
 };
 
-export const data = (income: number, filingStatus: { value: string, label: string }) => {
+export const data = (income: number, filingStatus: { value: string, label: string }, includeSS: boolean, includeFederalIncome: boolean) => {
 console.log(yearlyLabels)
+let datasets = []
+if (includeSS) {
+  datasets.push({
+      label: "SS Taxes",
+      data: getTaxDataset("socialSecurity", filingStatus.value, income),
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      fill: true,
+  })
+}
+if (includeFederalIncome) {
+
+  datasets.push({ 
+    label: `Federal Income Taxes ${filingStatus.label}`,
+    data: getTaxDataset("federalIncome", filingStatus.value, income),
+    borderColor: "rgb(255, 99, 132)",
+    backgroundColor: "rgba(255, 99, 132, 0.5)",
+    fill: "origin",
+  })
+}
   return {
     labels: yearlyLabels(),
-    datasets: [
-      {
-        label: "SS Taxes",
-        data: getTaxDataset("socialSecurity", filingStatus.value, income),
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-        fill: true,
-      },
-      {
-        label: `Federal Income Taxes ${filingStatus.label}`,
-        data: getTaxDataset("federalIncome", filingStatus.value, income),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        fill: "origin",
-      },
-    ],
+    datasets:datasets
   };
 };
 
-const TaxChart: React.FC<TaxChartProps> = ({ income, filingStatus }) => {
+const TaxChart: React.FC<TaxChartProps> = ({ income, filingStatus, includeSS, includeFederalIncome}) => {
   return (
     <div style={{ height: "750px", width: "1200px" }}>
       <Line
-        data={data(income, filingStatus)}
+        data={data(income, filingStatus, includeSS, includeFederalIncome)}
         options={options(income, filingStatus)}
       />
     </div>
