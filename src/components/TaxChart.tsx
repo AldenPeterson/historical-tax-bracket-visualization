@@ -12,8 +12,9 @@ import {
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
-
 import { yearlyLabels, getTaxDataset } from "../calculators/TaxCalculation";
+
+import { hexToRGBA } from "../utilities/HexToRGBA";
 
 ChartJS.register(
   CategoryScale,
@@ -32,6 +33,7 @@ interface TaxChartProps {
   includeSS: boolean;
   includeFederalIncome: boolean;
   showMarginalFederalRate: boolean;
+  showNetIncome: boolean;
 }
 
 export const options = (
@@ -39,12 +41,18 @@ export const options = (
   filingStatus: { value: string; label: string },
   showMarginalFederalRate: boolean
 ) => {
-  let yScales = {};
-
-  yScales.y = {
-    min: 0,
-    max: income,
-    stacked: true,
+  let yScales: any = {
+    x: {
+      title: {
+        display: true,
+        text: "Month",
+      },
+    },
+    y: {
+      min: 0,
+      max: income,
+      stacked: true,
+    },
   };
 
   if (showMarginalFederalRate) {
@@ -54,8 +62,8 @@ export const options = (
       stacked: false,
       position: "right",
       title: {
-        text:"Marginal rate",
-        display:true
+        text: "Marginal rate",
+        display: true,
       },
       ticks: {
         callback: function (value: number) {
@@ -65,11 +73,10 @@ export const options = (
     };
   }
 
-  console.log(yScales);
   return {
+    type: "line",
     responsive: true,
     scales: yScales,
-
     plugins: {
       legend: {
         position: "top" as const,
@@ -93,10 +100,9 @@ export const options = (
               }
             } else {
               if (context.parsed.y !== null) {
-                label += ": $" + Math.round(Number(context.parsed.y)).toLocaleString(
-                  "en-US"
-                )
-
+                label +=
+                  ": $" +
+                  Math.round(Number(context.parsed.y)).toLocaleString("en-US");
               }
             }
             return label;
@@ -107,50 +113,84 @@ export const options = (
   };
 };
 
+const subtractFromIncome = (netIncome: number[], taxes: number[]) => {
+  console.log(netIncome, taxes);
+  for (let i = 0; i < netIncome.length; i++) {
+    netIncome[i] -= taxes[i];
+  }
+};
 export const data = (
   income: number,
   filingStatus: { value: string; label: string },
   includeSS: boolean,
   includeFederalIncome: boolean,
-  showMarginalFederalRate: boolean
+  showMarginalFederalRate: boolean,
+  showNetIncome: boolean
 ) => {
-  console.log(yearlyLabels);
-  const includeNetIncome = true;
   let datasets = [];
+  let netIncome = new Array(yearlyLabels().length).fill(income);
+  //https://www.learnui.design/tools/data-color-picker.html#palette
+  const colors = ["#003f5c", "#58508d", "#bc5090", "#ff6361", "#ffa600"];
+
   if (includeSS) {
+    const color = colors[0];
+    const ssTaxes = getTaxDataset("socialSecurity", filingStatus.value, income);
     datasets.push({
       label: "SS Taxes",
-      data: getTaxDataset("socialSecurity", filingStatus.value, income),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      data: ssTaxes,
+      borderColor: color,
+      backgroundColor: color,
       fill: true,
       pointRadius: 0,
+      borderWidth: 1,
     });
+
+    subtractFromIncome(netIncome, ssTaxes);
   }
+
   if (includeFederalIncome) {
+    const color = colors[1];
+    const federalIncomeTaxes = getTaxDataset(
+      "federalIncome",
+      filingStatus.value,
+      income
+    );
     datasets.push({
       label: `Federal Income Taxes`,
-      data: getTaxDataset("federalIncome", filingStatus.value, income),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-      fill: "origin",
+      data: federalIncomeTaxes,
+      borderColor: color,
+      backgroundColor: color,
+      fill: true,
       pointRadius: 0,
+      borderWidth: 1,
     });
+
+    subtractFromIncome(netIncome, federalIncomeTaxes);
   }
 
   if (showMarginalFederalRate) {
+    const color = colors[4];
     datasets.push({
       label: `Federal Marginal Rate`,
       data: getTaxDataset("federalIncome", filingStatus.value, income, true),
-      borderColor: "rgb(75, 192, 192)",
-      backgroundColor: "rgb(75, 192, 192)",
+      borderColor: color,
+      backgroundColor: color,
       fill: "false",
       yAxisID: "y1",
       pointRadius: 0,
     });
   }
 
-  if (includeNetIncome) {
+  if (showNetIncome) {
+    const color = colors[3];
+    datasets.push({
+      label: `Net Income`,
+      data: netIncome,
+      borderColor: hexToRGBA(color, 0.15),
+      backgroundColor: hexToRGBA(color, 0.15),
+      fill: true,
+      pointRadius: 0,
+    });
   }
   return {
     labels: yearlyLabels(),
@@ -164,6 +204,7 @@ const TaxChart: React.FC<TaxChartProps> = ({
   includeSS,
   includeFederalIncome,
   showMarginalFederalRate,
+  showNetIncome,
 }) => {
   return (
     <div style={{ height: "750px", width: "1200px" }}>
@@ -173,7 +214,8 @@ const TaxChart: React.FC<TaxChartProps> = ({
           filingStatus,
           includeSS,
           includeFederalIncome,
-          showMarginalFederalRate
+          showMarginalFederalRate,
+          showNetIncome
         )}
         options={options(income, filingStatus, showMarginalFederalRate)}
       />

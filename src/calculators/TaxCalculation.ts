@@ -9,7 +9,6 @@ interface InflationMultipliers {
 
 export const yearlyLabels = () => {
   const uniqueYears = [...new Set(taxData.map((item: TaxBracket) => item.year))];
-  console.log("unique years are", uniqueYears)
   const sortedYears = uniqueYears.sort((a, b) => Number(a) - Number(b))
   return sortedYears;
 };
@@ -45,7 +44,7 @@ export const getTaxDataset = (
     const yearInflationMultiplier = Number((inflationMultipliers as InflationMultipliers)[year]);
 
     const inflationAdjustedIncome = income * yearInflationMultiplier;
-    console.log("Inflation adjusted income for year", year, "is", inflationAdjustedIncome)
+    // console.log("Inflation adjusted income for year", year, "is", inflationAdjustedIncome)
     let currentBracketRate = 0;
     for (let index = 0; index < matchingBrackets.length; index++) {
       let priorBracketMax = 0;

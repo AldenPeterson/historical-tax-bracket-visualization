@@ -14,6 +14,7 @@ function App() {
   const [includeSS, setIncludeSS] = useState(true);
   const [includeFederalIncome, setIncludeFederalIncome] = useState(true);
   const [showMarginalFederalRate, setShowMarginalFederalRate] = useState(true);
+  const [showNetIncome, setShowNetIncome] = useState(true);
 
   return (
     <>
@@ -56,12 +57,23 @@ function App() {
           Show Marginal Federal?
         </label>
       </div>
+      <div style={{ textAlign: "left" }}>
+        <label>
+          <input
+            type="checkbox"
+            checked={showNetIncome}
+            onChange={() => setShowNetIncome(!showNetIncome)}
+          />
+          Show net?
+        </label>
+      </div>
       <TaxChart
         income={income}
         filingStatus={filingStatus}
         includeSS={includeSS}
         includeFederalIncome={includeFederalIncome}
         showMarginalFederalRate={showMarginalFederalRate}
+        showNetIncome={showNetIncome}
       />
     </>
   );
