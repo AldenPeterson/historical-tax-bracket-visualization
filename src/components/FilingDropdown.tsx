@@ -9,7 +9,7 @@ interface FilingDropdownProps {
 }
 
 const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
-    const [selectedOption, setSelectedOption] = React.useState(null);
+    const [selectedOption, setSelectedOption] = React.useState(FilingStatuses[0]);
 
     const customStyles = {
         control: (provided: any) => ({
