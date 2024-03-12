@@ -2,10 +2,11 @@ import React, { FC } from 'react';
 import Select from 'react-select';
 
 import FilingStatuses from '../utilities/FilingStatus';
+import { FilingStatusSelection } from '../types/FilingStatus';
 
 interface FilingDropdownProps {
   value: {value: string, label: string};
-  onChange: any;
+  onChange: (option: FilingStatusSelection) => void;
 }
 
 const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
@@ -42,10 +43,6 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
           alignItems: 'center',
         })      
       };
-    const handleOptionChange = (event:any) => {
-        onChange(event);
-        setSelectedOption(event.target)
-    };
     const divStyle = {
       textAlign: 'left' as 'left',
       display: 'flex',
@@ -58,7 +55,12 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
       midWidth: '250px',
       
     };
-  
+
+    const handleOptionChange = (event:any) => {
+      onChange(event);
+      setSelectedOption(event.target)
+  };
+
     return (
       <div style = {divStyle}>
       <label style={labelStyle}>Filing Status</label>

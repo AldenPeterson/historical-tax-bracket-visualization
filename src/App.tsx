@@ -7,6 +7,7 @@ import InputBox from "./components/IncomeInput";
 import FilingDropdown from "./components/FilingDropdown";
 
 import FilingStatuses from "./utilities/FilingStatus";
+import CheckboxControl from "./components/CheckboxControl";
 
 function App() {
   const [income, setIncome] = useState(75000);
@@ -27,46 +28,27 @@ function App() {
       </p>
       <InputBox value={income} label="2024 Income" setIncome={setIncome} />
       <FilingDropdown value={filingStatus} onChange={setFilingStatus} />
-      <div style={{ textAlign: "left" }}>
-        <label>
-          <input
-            type="checkbox"
-            checked={includeSS}
-            onChange={() => setIncludeSS(!includeSS)}
-          />
-          Include Social Security?
-        </label>
-      </div>
-      <div style={{ textAlign: "left" }}>
-        <label>
-          <input
-            type="checkbox"
-            checked={includeFederalIncome}
-            onChange={() => setIncludeFederalIncome(!includeFederalIncome)}
-          />
-          Include Federal Income?
-        </label>
-      </div>
-      <div style={{ textAlign: "left" }}>
-        <label>
-          <input
-            type="checkbox"
-            checked={showMarginalFederalRate}
-            onChange={() => setShowMarginalFederalRate(!showMarginalFederalRate)}
-          />
-          Show Marginal Federal?
-        </label>
-      </div>
-      <div style={{ textAlign: "left" }}>
-        <label>
-          <input
-            type="checkbox"
-            checked={showNetIncome}
-            onChange={() => setShowNetIncome(!showNetIncome)}
-          />
-          Show net?
-        </label>
-      </div>
+      <CheckboxControl
+        label="Include Social Security?"
+        checked={includeSS}
+        onChange={() => setIncludeSS(!includeSS)}
+      />
+      <CheckboxControl
+        label="Include Federal Income?"
+        checked={includeFederalIncome}
+        onChange={() => setIncludeFederalIncome(!includeFederalIncome)}
+      />
+      <CheckboxControl
+        label="Show Marginal Federal Rate?"
+        checked={showMarginalFederalRate}
+        onChange={() => setShowMarginalFederalRate(!showMarginalFederalRate)}
+      />
+      <CheckboxControl
+        label="Show Net Income?"
+        checked={showNetIncome}
+        onChange={() => setShowNetIncome(!showNetIncome)}
+      />
+
       <TaxChart
         income={income}
         filingStatus={filingStatus}
