@@ -16,6 +16,7 @@ function App() {
   const [includeFederalIncome, setIncludeFederalIncome] = useState(true);
   const [showMarginalFederalRate, setShowMarginalFederalRate] = useState(true);
   const [showNetIncome, setShowNetIncome] = useState(true);
+  const [includeMedicare, setIncludeMedicare] = useState(true);
 
 
   const config = {
@@ -23,6 +24,7 @@ function App() {
     includeFederalIncome,
     showMarginalFederalRate,
     showNetIncome,
+    includeMedicare
   };
   
 
@@ -41,7 +43,12 @@ function App() {
         label="Include Social Security?"
         checked={includeSS}
         onChange={() => setIncludeSS(!includeSS)}
-      />
+      />      
+      <CheckboxControl
+      label="Include Medicare?"
+      checked={includeSS}
+      onChange={() => setIncludeMedicare(!includeMedicare)}
+    />
       <CheckboxControl
         label="Include Federal Income?"
         checked={includeFederalIncome}

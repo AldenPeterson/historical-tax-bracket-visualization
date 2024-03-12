@@ -35,6 +35,7 @@ interface TaxChartProps {
     includeFederalIncome: boolean;
     showMarginalFederalRate: boolean;
     showNetIncome: boolean;
+    includeMedicare: boolean;
   }
 
 }
@@ -116,7 +117,7 @@ export const options = (
   };
 };
 
-const subtractFromIncome = (netIncome: number[], taxes: number[]) => {
+const subtractTaxFromNetIncome = (netIncome: number[], taxes: number[]) => {
   console.log(netIncome, taxes);
   for (let i = 0; i < netIncome.length; i++) {
     netIncome[i] -= taxes[i];
@@ -130,6 +131,7 @@ export const data = (
     includeFederalIncome: boolean;
     showMarginalFederalRate: boolean;
     showNetIncome: boolean;
+    includeMedicare: boolean;
   }
 
 ) => {
@@ -151,11 +153,28 @@ export const data = (
       borderWidth: 1,
     });
 
-    subtractFromIncome(netIncome, ssTaxes);
+    subtractTaxFromNetIncome(netIncome, ssTaxes);
+  }
+  console.log(config)
+  if (config.includeMedicare) {
+    const color = colors[1];
+    const medicareTaxes = getTaxDataset("medicare", filingStatus.value, income);
+    console.log("medicare" +  medicareTaxes)
+    datasets.push({
+      label: "Medicare",
+      data: medicareTaxes,
+      borderColor: color,
+      backgroundColor: color,
+      fill: true,
+      pointRadius: 0,
+      borderWidth: 1,
+    });
+
+    subtractTaxFromNetIncome(netIncome, medicareTaxes);
   }
 
   if (config.includeFederalIncome) {
-    const color = colors[1];
+    const color = colors[2];
     const federalIncomeTaxes = getTaxDataset(
       "federalIncome",
       filingStatus.value,
@@ -171,7 +190,7 @@ export const data = (
       borderWidth: 1,
     });
 
-    subtractFromIncome(netIncome, federalIncomeTaxes);
+    subtractTaxFromNetIncome(netIncome, federalIncomeTaxes);
   }
 
   if (config.showMarginalFederalRate) {
