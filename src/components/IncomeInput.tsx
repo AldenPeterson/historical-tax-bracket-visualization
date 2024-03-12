@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 
+import { inputStyle, labelStyle,inputDivStyle } from '../styles/styles';
+
 interface InputBoxProps {
   label: string;
   value: number;
@@ -9,25 +11,9 @@ interface InputBoxProps {
 
 
 const InputBox: FC<InputBoxProps> = ({ value, setIncome , label}) => {
-  const inputStyle = {
-    width: '200px',
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    textAlign: 'left' as 'left',
-  };
-  const divStyle = {
-    textAlign: 'left' as 'left',
-    paddingTop: '15px',
-    paddingBottom: '15px',
-  };
 
-  const labelStyle = {
-    paddingRight: '15px',
-    midWidth: '250px',
-    paddingTop: '10px',
-    paddingBottom: '10px',
-  };
+
+
 
   const updateIncome = (value: string | undefined) => {
     if (value !== undefined) {
@@ -37,7 +23,7 @@ const InputBox: FC<InputBoxProps> = ({ value, setIncome , label}) => {
   }
 
   return (
-    <div style = {divStyle}>
+    <div style = {inputDivStyle}>
         <label style={labelStyle}>{label}</label>
         <CurrencyInput
           style={inputStyle}

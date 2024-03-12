@@ -4,6 +4,9 @@ import Select from 'react-select';
 import FilingStatuses from '../utilities/FilingStatus';
 import { FilingStatusSelection } from '../types/FilingStatus';
 
+
+import { inputStyle, labelStyle, inputDivStyle} from '../styles/styles';
+
 interface FilingDropdownProps {
   value: {value: string, label: string};
   onChange: (option: FilingStatusSelection) => void;
@@ -14,13 +17,13 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
 
     const customStyles = {
         control: (provided: any) => ({
-          ...provided,
           backgroundColor: '#f5f5f5',
           borderColor: '#e0e0e0',
-          minHeight: '40px',
-          height: '40px',
           boxShadow: 'none',
-          width: '200px'
+          justifyContent: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          ...inputStyle,
         }),
         menu: (provided: any) => ({
           ...provided,
@@ -32,6 +35,7 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
           color: '#333',
           textAlign: 'center',
           display: 'flex',
+          
           alignItems: 'center',
         }),
         option: (provided: any) => ({
@@ -43,18 +47,6 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
           alignItems: 'center',
         })      
       };
-    const divStyle = {
-      textAlign: 'left' as 'left',
-      display: 'flex',
-      alignItems: 'center',
-      paddingTop: '15px',
-      paddingBottom: '15px',
-    };
-    const labelStyle = {
-      paddingRight: '15px',
-      midWidth: '250px',
-      
-    };
 
     const handleOptionChange = (event:any) => {
       onChange(event);
@@ -62,7 +54,7 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
   };
 
     return (
-      <div style = {divStyle}>
+      <div style = {inputDivStyle}>
       <label style={labelStyle}>Filing Status</label>
 
         <Select

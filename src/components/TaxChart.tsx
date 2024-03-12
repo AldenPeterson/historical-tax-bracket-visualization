@@ -121,7 +121,6 @@ export const options = (
 };
 
 const subtractTaxFromNetIncome = (netIncome: number[], taxes: number[]) => {
-  console.log(netIncome, taxes);
   for (let i = 0; i < netIncome.length; i++) {
     netIncome[i] -= taxes[i];
   }
@@ -158,11 +157,9 @@ export const data = (
 
     subtractTaxFromNetIncome(netIncome, ssTaxes);
   }
-  console.log(config)
   if (config.includeMedicare) {
     const color = colors[1];
     const medicareTaxes = getTaxDataset("medicare", filingStatus.value, income);
-    console.log("medicare" +  medicareTaxes)
     datasets.push({
       label: "Medicare",
       data: medicareTaxes,
@@ -205,8 +202,9 @@ export const data = (
       borderColor: color,
       backgroundColor: color,
       fill: "false",
-      yAxisID: "y1",
-      pointRadius: 0
+      yAxisID: "y1",  
+      pointRadius: 0,
+      order: -1
     });
   }
 
