@@ -81,7 +81,7 @@ export const options = (
     type: "line",
     responsive: true,
     scales: yScales,
-    plugins: {
+    plugins: {    
       legend: {
         position: "top" as const,
       },
@@ -94,6 +94,9 @@ export const options = (
         }`,
       },
       tooltip: {
+        mode: 'nearest',
+        axis: 'x',
+        intersect: false,
         callbacks: {
           label: function (context: any) {
             var label = context.dataset.label || "";
@@ -188,6 +191,7 @@ export const data = (
       fill: true,
       pointRadius: 0,
       borderWidth: 1,
+      
     });
 
     subtractTaxFromNetIncome(netIncome, federalIncomeTaxes);
@@ -202,8 +206,7 @@ export const data = (
       backgroundColor: color,
       fill: "false",
       yAxisID: "y1",
-      pointRadius: 0,
-      z:1
+      pointRadius: 0
     });
   }
 
