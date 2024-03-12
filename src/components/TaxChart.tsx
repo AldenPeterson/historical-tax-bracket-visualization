@@ -30,10 +30,13 @@ ChartJS.register(
 interface TaxChartProps {
   income: number;
   filingStatus: any;
-  includeSS: boolean;
-  includeFederalIncome: boolean;
-  showMarginalFederalRate: boolean;
-  showNetIncome: boolean;
+  config: {
+    includeSS: boolean;
+    includeFederalIncome: boolean;
+    showMarginalFederalRate: boolean;
+    showNetIncome: boolean;
+  }
+
 }
 
 export const options = (
@@ -122,17 +125,20 @@ const subtractFromIncome = (netIncome: number[], taxes: number[]) => {
 export const data = (
   income: number,
   filingStatus: { value: string; label: string },
-  includeSS: boolean,
-  includeFederalIncome: boolean,
-  showMarginalFederalRate: boolean,
-  showNetIncome: boolean
+  config: {
+    includeSS: boolean;
+    includeFederalIncome: boolean;
+    showMarginalFederalRate: boolean;
+    showNetIncome: boolean;
+  }
+
 ) => {
   let datasets = [];
   let netIncome = new Array(yearlyLabels().length).fill(income);
   //https://www.learnui.design/tools/data-color-picker.html#palette
   const colors = ["#003f5c", "#58508d", "#bc5090", "#ff6361", "#ffa600"];
 
-  if (includeSS) {
+  if (config.includeSS) {
     const color = colors[0];
     const ssTaxes = getTaxDataset("socialSecurity", filingStatus.value, income);
     datasets.push({
@@ -148,7 +154,7 @@ export const data = (
     subtractFromIncome(netIncome, ssTaxes);
   }
 
-  if (includeFederalIncome) {
+  if (config.includeFederalIncome) {
     const color = colors[1];
     const federalIncomeTaxes = getTaxDataset(
       "federalIncome",
@@ -168,7 +174,7 @@ export const data = (
     subtractFromIncome(netIncome, federalIncomeTaxes);
   }
 
-  if (showMarginalFederalRate) {
+  if (config.showMarginalFederalRate) {
     const color = colors[4];
     datasets.push({
       label: `Federal Marginal Rate`,
@@ -182,7 +188,7 @@ export const data = (
     });
   }
 
-  if (showNetIncome) {
+  if (config.showNetIncome) {
     const color = colors[3];
     datasets.push({
       label: `Net Income`,
@@ -202,10 +208,7 @@ export const data = (
 const TaxChart: React.FC<TaxChartProps> = ({
   income,
   filingStatus,
-  includeSS,
-  includeFederalIncome,
-  showMarginalFederalRate,
-  showNetIncome,
+  config
 }) => {
   return (
     <div style={{ height: "750px", width: "1200px" }}>
@@ -213,12 +216,10 @@ const TaxChart: React.FC<TaxChartProps> = ({
         data={data(
           income,
           filingStatus,
-          includeSS,
-          includeFederalIncome,
-          showMarginalFederalRate,
-          showNetIncome
+          config
+
         )}
-        options={options(income, filingStatus, showMarginalFederalRate)}
+        options={options(income, filingStatus, config.showMarginalFederalRate)}
       />
     </div>
   );

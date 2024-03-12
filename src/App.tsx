@@ -17,6 +17,15 @@ function App() {
   const [showMarginalFederalRate, setShowMarginalFederalRate] = useState(true);
   const [showNetIncome, setShowNetIncome] = useState(true);
 
+
+  const config = {
+    includeSS,
+    includeFederalIncome,
+    showMarginalFederalRate,
+    showNetIncome,
+  };
+  
+
   return (
     <>
       <h1>Welcome to Historical Tax Rate Simulator</h1>
@@ -52,10 +61,7 @@ function App() {
       <TaxChart
         income={income}
         filingStatus={filingStatus}
-        includeSS={includeSS}
-        includeFederalIncome={includeFederalIncome}
-        showMarginalFederalRate={showMarginalFederalRate}
-        showNetIncome={showNetIncome}
+        config={config}
       />
     </>
   );
