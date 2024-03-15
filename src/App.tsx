@@ -24,7 +24,7 @@ function App() {
     includeSS,
     includeFederalIncome,
     showMarginalFederalRate,
-    showNetIncome: showTakehomePay,
+    showTakehomePay,
     includeMedicare,
     includeStandardDeductions
   };

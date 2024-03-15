@@ -16,7 +16,7 @@ const FilingDropdown: FC<FilingDropdownProps> = ({onChange}) => {
     const [selectedOption, setSelectedOption] = React.useState(FilingStatuses[0]);
 
     const customStyles = {
-        control: (provided: any) => ({
+        control: () => ({
           backgroundColor: '#f5f5f5',
           borderColor: '#e0e0e0',
           boxShadow: 'none',
