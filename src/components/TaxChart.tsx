@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
-import { yearlyLabels, getTaxDataset } from "../calculators/TaxCalculation";
+import { yearlyLabels, getTaxFreeIncome, getTaxDataset } from "../calculators/TaxCalculation";
 
 import { hexToRGBA } from "../utilities/HexToRGBA";
 
@@ -36,6 +36,7 @@ interface TaxChartProps {
     showMarginalFederalRate: boolean;
     showNetIncome: boolean;
     includeMedicare: boolean;
+    includeStandardDeductions: boolean;
   }
 
 }
@@ -43,7 +44,8 @@ interface TaxChartProps {
 export const options = (
   income: number,
   filingStatus: { value: string; label: string },
-  showMarginalFederalRate: boolean
+  showMarginalFederalRate: boolean,
+  includeStandardDeductions: boolean
 ) => {
   let yScales: any = {
     x: {
@@ -58,6 +60,8 @@ export const options = (
       stacked: true,
     },
   };
+
+
 
   if (showMarginalFederalRate) {
     yScales.y1 = {
@@ -75,6 +79,14 @@ export const options = (
         },
       },
     };
+  }
+
+  if (includeStandardDeductions) {
+    yScales.y2 = {
+      min: 0,
+      max: income,
+      display: false,
+    }
   }
 
   return {
@@ -134,17 +146,41 @@ export const data = (
     showMarginalFederalRate: boolean;
     showNetIncome: boolean;
     includeMedicare: boolean;
+    includeStandardDeductions: boolean;
   }
 
 ) => {
-  let datasets = [];
-  let netIncome = new Array(yearlyLabels().length).fill(income);
   //https://www.learnui.design/tools/data-color-picker.html#palette
-  const colors = ["#003f5c", "#58508d", "#bc5090", "#ff6361", "#ffa600"];
+  // const colors = ["#003f5c", "#444e86", "#955196", "#dd5182", "#ffa600"];
+
+  const colors = ["#003f5c", "#444e86", "#955196", "#dd5182", "#ff6e54", "ffa600"];
+  
+  let datasets = [];
+  let takehomePay = new Array(yearlyLabels().length).fill(income);
+  let taxableIncome = new Array(yearlyLabels().length).fill(income);
+
+  if (config.includeStandardDeductions){
+
+    const color = colors[3];
+    const standardDeductions = getTaxFreeIncome(income, filingStatus.value, 1);
+    taxableIncome = taxableIncome.map((value, index) => value - standardDeductions[index].standardDeduction - standardDeductions[index].personalExemptions);
+    
+    // console.log("Taxable Income", taxableIncome, "Standard Deductions", standardDeductions);
+    datasets.push({
+      label: `Taxable Income`,
+      data: taxableIncome,
+      borderColor: color,
+      backgroundColor: color,
+      fill: "false",
+      pointRadius: 0,
+      order: 10,
+      yAxisID: "y2"
+    });
+  }
 
   if (config.includeSS) {
     const color = colors[0];
-    const ssTaxes = getTaxDataset("socialSecurity", filingStatus.value, income);
+    const ssTaxes = getTaxDataset("socialSecurity", filingStatus.value, taxableIncome);
     datasets.push({
       label: "SS Taxes",
       data: ssTaxes,
@@ -155,11 +191,11 @@ export const data = (
       borderWidth: 1,
     });
 
-    subtractTaxFromNetIncome(netIncome, ssTaxes);
+    subtractTaxFromNetIncome(takehomePay, ssTaxes);
   }
   if (config.includeMedicare) {
     const color = colors[1];
-    const medicareTaxes = getTaxDataset("medicare", filingStatus.value, income);
+    const medicareTaxes = getTaxDataset("medicare", filingStatus.value, taxableIncome);
     datasets.push({
       label: "Medicare",
       data: medicareTaxes,
@@ -170,7 +206,7 @@ export const data = (
       borderWidth: 1,
     });
 
-    subtractTaxFromNetIncome(netIncome, medicareTaxes);
+    subtractTaxFromNetIncome(takehomePay, medicareTaxes);
   }
 
   if (config.includeFederalIncome) {
@@ -178,7 +214,7 @@ export const data = (
     const federalIncomeTaxes = getTaxDataset(
       "federalIncome",
       filingStatus.value,
-      income
+      taxableIncome
     );
     datasets.push({
       label: `Federal Income Taxes`,
@@ -191,14 +227,14 @@ export const data = (
       
     });
 
-    subtractTaxFromNetIncome(netIncome, federalIncomeTaxes);
+    subtractTaxFromNetIncome(takehomePay, federalIncomeTaxes);
   }
 
   if (config.showMarginalFederalRate) {
     const color = colors[4];
     datasets.push({
       label: `Federal Marginal Rate`,
-      data: getTaxDataset("federalIncome", filingStatus.value, income, true),
+      data: getTaxDataset("federalIncome", filingStatus.value, taxableIncome, true),
       borderColor: color,
       backgroundColor: color,
       fill: "false",
@@ -211,8 +247,8 @@ export const data = (
   if (config.showNetIncome) {
     const color = colors[3];
     datasets.push({
-      label: `Net Income`,
-      data: netIncome,
+      label: `Takehome Pay`,
+      data: takehomePay,
       borderColor: hexToRGBA(color, 0.15),
       backgroundColor: hexToRGBA(color, 0.15),
       fill: true,
@@ -239,7 +275,7 @@ const TaxChart: React.FC<TaxChartProps> = ({
           config
 
         )}
-        options={options(income, filingStatus, config.showMarginalFederalRate)}
+        options={options(income, filingStatus, config.showMarginalFederalRate, config.includeStandardDeductions)}
       />
     </div>
   );

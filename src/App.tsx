@@ -15,16 +15,18 @@ function App() {
   const [includeSS, setIncludeSS] = useState(true);
   const [includeFederalIncome, setIncludeFederalIncome] = useState(true);
   const [showMarginalFederalRate, setShowMarginalFederalRate] = useState(true);
-  const [showNetIncome, setShowNetIncome] = useState(true);
+  const [showTakehomePay, setShowTakehomePay] = useState(true);
   const [includeMedicare, setIncludeMedicare] = useState(true);
+  const [includeStandardDeductions, setIncludeStandardDeductions] = useState(true);
 
 
   const config = {
     includeSS,
     includeFederalIncome,
     showMarginalFederalRate,
-    showNetIncome,
-    includeMedicare
+    showNetIncome: showTakehomePay,
+    includeMedicare,
+    includeStandardDeductions
   };
   
 
@@ -46,7 +48,7 @@ function App() {
       />      
       <CheckboxControl
       label="Include Medicare?"
-      checked={includeSS}
+      checked={includeMedicare}
       onChange={() => setIncludeMedicare(!includeMedicare)}
     />
       <CheckboxControl
@@ -60,11 +62,16 @@ function App() {
         onChange={() => setShowMarginalFederalRate(!showMarginalFederalRate)}
       />
       <CheckboxControl
-        label="Show Net Income?"
-        checked={showNetIncome}
-        onChange={() => setShowNetIncome(!showNetIncome)}
+        label="Show Takehome Pay?"
+        checked={showTakehomePay}
+        onChange={() => setShowTakehomePay(!showTakehomePay)}
       />
 
+    <CheckboxControl
+        label="Include Standard Deductions/Exemptions?"
+        checked={includeStandardDeductions}
+        onChange={() => setIncludeStandardDeductions(!includeStandardDeductions)}
+      />
       <TaxChart
         income={income}
         filingStatus={filingStatus}
