@@ -162,7 +162,7 @@ export const data = (taxData: TaxData) => {
     const color = colors[0];
     datasets.push({
       label: "SS Taxes",
-      data: taxData.socialSecurity,
+      data: taxData.socialSecurity.basic,
       borderColor: color,
       backgroundColor: color,
       fill: true,
@@ -174,7 +174,7 @@ export const data = (taxData: TaxData) => {
     const color = colors[1];
     datasets.push({
       label: "Medicare",
-      data: taxData.medicare,
+      data: taxData.medicare.basic,
       borderColor: color,
       backgroundColor: color,
       fill: true,
@@ -187,7 +187,7 @@ export const data = (taxData: TaxData) => {
     const color = colors[2];
     datasets.push({
       label: `Federal Income Taxes`,
-      data: taxData.federalIncome,
+      data: taxData.federalIncome.basic,
       borderColor: color,
       backgroundColor: color,
       fill: true,

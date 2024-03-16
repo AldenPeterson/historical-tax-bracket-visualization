@@ -1,5 +1,6 @@
 import taxData from "../data/taxes.json";
 
+import { TaxDataSeries } from "../types/TaxData";
 import { TaxBracket } from "../types/TaxBracket";
 import StandardDeductionAndExemptions from "../data/standard-deduction-exemptions.json";
 import inflationMultipliers from "../data/inflation-multipliers.json";
@@ -72,8 +73,8 @@ export const getTaxDataset = (
   filingStatus: string,
   income: number[],
   marginalRate: boolean = false
-) => {
-  let datasetSeries: number[] = [];
+) : TaxDataSeries => {
+  let datasetSeries: TaxDataSeries = { basic: [], detailed: [] };
 
   for (let index = 0; index < yearlyLabels().length; index++) {
     const year = yearlyLabels()[index];
@@ -97,8 +98,10 @@ export const getTaxDataset = (
 
     const yearInflationMultiplier = inflationMultiplier(year);
     const inflationAdjustedIncome = income[index] * yearInflationMultiplier;
-    // console.log("Inflation adjusted income for year", year, "is", inflationAdjustedIncome)
+
     let currentBracketRate = 0;
+    let detailedTaxInformation = [];
+
     for (let index = 0; index < matchingBrackets.length; index++) {
       let priorBracketMax = 0;
       const currentBracketMax = Number(matchingBrackets[index].bracketMax);
@@ -106,26 +109,43 @@ export const getTaxDataset = (
       if (index > 0) {
         priorBracketMax = Number(matchingBrackets[index - 1].bracketMax);
       }
+
+      let bracketTaxOwed = 0;
+      // At last (unbounded) bracket      
       if (index === matchingBrackets.length - 1) {
-        const bracketTaxOwed =
+        bracketTaxOwed =
           (inflationAdjustedIncome - priorBracketMax) * currentBracketRate;
-        yearTaxOwed += bracketTaxOwed;
-      } else if (inflationAdjustedIncome <= currentBracketMax) {
-        const incrementalTax =
-          (inflationAdjustedIncome - priorBracketMax) * currentBracketRate;
-        yearTaxOwed += incrementalTax;
-        break;
-      } else {
-        const bracketTaxOwed =
-          (currentBracketMax - priorBracketMax) * currentBracketRate;
-        yearTaxOwed += bracketTaxOwed;
       }
+      // income falls within current bracket
+      else if (inflationAdjustedIncome <= currentBracketMax) {
+        bracketTaxOwed =
+          (inflationAdjustedIncome - priorBracketMax) * currentBracketRate;
+      } 
+      // income within next bracket
+      else {
+        bracketTaxOwed =
+          (currentBracketMax - priorBracketMax) * currentBracketRate;
+      }
+      yearTaxOwed += bracketTaxOwed;
+      detailedTaxInformation.push({
+        nominalTaxBracketMax: currentBracketMax,
+        realTaxBracketMax: currentBracketMax / yearInflationMultiplier,
+        taxBracketRate: currentBracketRate,
+        nominalTaxOwed: bracketTaxOwed,
+        realTaxOwed: bracketTaxOwed / yearInflationMultiplier,
+      })
+
+      if(inflationAdjustedIncome <= currentBracketMax){
+        break;
+      }
+
     }
     yearTaxOwed = yearTaxOwed / yearInflationMultiplier;
     if (marginalRate) {
-      datasetSeries.push(currentBracketRate);
+      datasetSeries.basic.push(currentBracketRate);
     } else {
-      datasetSeries.push(yearTaxOwed);
+      datasetSeries.basic.push(yearTaxOwed);
+      datasetSeries.detailed.push(detailedTaxInformation);
     }
   }
 

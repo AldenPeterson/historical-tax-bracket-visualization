@@ -40,7 +40,7 @@ let taxableIncome = new Array(yearlyLabels().length).fill(income);
 const exemptionCount = filingStatus.value === "single" ? 1 : 2;
 
   if (config.includeStandardDeductions) {
-    const standardDeductions = getTaxFreeIncome(income, filingStatus.value, 1);
+    const standardDeductions = getTaxFreeIncome(income, filingStatus.value, exemptionCount);
     taxableIncome = taxableIncome.map(
       (value, index) =>
         value -
@@ -57,7 +57,7 @@ const exemptionCount = filingStatus.value === "single" ? 1 : 2;
       filingStatus.value,
       taxableIncome
     );
-    subtractTaxFromNetIncome(takehomePay, ssTaxes);
+    subtractTaxFromNetIncome(takehomePay, ssTaxes.basic);
     taxData.socialSecurity = ssTaxes;
   }
 
@@ -68,7 +68,7 @@ const exemptionCount = filingStatus.value === "single" ? 1 : 2;
       taxableIncome
     );
 
-    subtractTaxFromNetIncome(takehomePay, medicareTaxes);
+    subtractTaxFromNetIncome(takehomePay, medicareTaxes.basic);
     taxData.medicare = medicareTaxes;
   }
 
@@ -79,7 +79,7 @@ const exemptionCount = filingStatus.value === "single" ? 1 : 2;
       taxableIncome
     );
 
-    subtractTaxFromNetIncome(takehomePay, federalIncomeTaxes);
+    subtractTaxFromNetIncome(takehomePay, federalIncomeTaxes.basic);
     taxData.federalIncome = federalIncomeTaxes;
   }
 
@@ -90,7 +90,7 @@ const exemptionCount = filingStatus.value === "single" ? 1 : 2;
       taxableIncome,
       true
     );
-    taxData.federalIncomeMarginal = federalMarginalRate;
+    taxData.federalIncomeMarginal = federalMarginalRate.basic;
   }
 
   taxData.takehomePay = takehomePay;
