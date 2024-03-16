@@ -127,13 +127,15 @@ export const getTaxDataset = (
           (currentBracketMax - priorBracketMax) * currentBracketRate;
       }
       yearTaxOwed += bracketTaxOwed;
+      if (currentBracketRate > 0){
       detailedTaxInformation.push({
-        nominalTaxBracketMax: currentBracketMax,
-        realTaxBracketMax: currentBracketMax / yearInflationMultiplier,
+        nominalTaxBracketMax: currentBracketMax > 0 ? currentBracketMax : "N/A",
+        realTaxBracketMax: currentBracketMax / yearInflationMultiplier > 0 ? currentBracketMax / yearInflationMultiplier : "N/A",
         taxBracketRate: currentBracketRate,
         nominalTaxOwed: bracketTaxOwed,
         realTaxOwed: bracketTaxOwed / yearInflationMultiplier,
       })
+    }
 
       if(inflationAdjustedIncome <= currentBracketMax){
         break;
