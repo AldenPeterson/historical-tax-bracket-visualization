@@ -11,7 +11,7 @@ interface InflationMultipliers {
 
 export const yearlyLabels = () => {
   const uniqueYears = [
-    ...new Set(taxData.map((item: TaxBracket) => item.year)),
+    ...new Set(taxData.map((item: TaxBracket) => Number(item.year))),
   ];
   const sortedYears = uniqueYears.sort((a, b) => Number(a) - Number(b));
   return sortedYears;
@@ -81,7 +81,7 @@ export const getTaxDataset = (
     // console.log("Filtering for year", year, "filing status", filingStatus, "and tax type", taxType)
     const matchingBrackets = taxData.filter(
       (taxBracket: TaxBracket) =>
-        taxBracket.year === year &&
+        taxBracket.year === String(year) &&
         taxBracket.filingStatus == filingStatus &&
         taxBracket.taxType == taxType
     );

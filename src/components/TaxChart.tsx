@@ -12,13 +12,12 @@ import {
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
-import {
-  yearlyLabels,
-  getTaxFreeIncome,
-  getTaxDataset,
-} from "../calculators/TaxCalculation";
+
+import { getTaxData } from "../calculators/Data";
 
 import { hexToRGBA } from "../utilities/HexToRGBA";
+
+import { TaxData } from "../types/TaxData";
 
 ChartJS.register(
   CategoryScale,
@@ -54,7 +53,7 @@ export const options = (
     x: {
       title: {
         display: true,
-        text: "Month",
+        text: "year",
       },
     },
     y: {
@@ -91,7 +90,7 @@ export const options = (
   }
 
   return {
-    type: 'line',
+    type: "line",
     responsive: true,
     scales: yScales,
     plugins: {
@@ -107,7 +106,7 @@ export const options = (
         }`,
       },
       tooltip: {
-        mode: 'nearest' as const,
+        mode: "nearest" as const,
         axis: "x" as const,
         intersect: false,
         callbacks: {
@@ -133,23 +132,7 @@ export const options = (
   };
 };
 
-const subtractTaxFromNetIncome = (netIncome: number[], taxes: number[]) => {
-  for (let i = 0; i < netIncome.length; i++) {
-    netIncome[i] -= taxes[i];
-  }
-};
-export const data = (
-  income: number,
-  filingStatus: { value: string; label: string },
-  config: {
-    includeSS: boolean;
-    includeFederalIncome: boolean;
-    showMarginalFederalRate: boolean;
-    showTakehomePay: boolean;
-    includeMedicare: boolean;
-    includeStandardDeductions: boolean;
-  }
-) => {
+export const data = (taxData: TaxData) => {
   //https://www.learnui.design/tools/data-color-picker.html#palette
   const colors = [
     "#003f5c",
@@ -159,26 +142,13 @@ export const data = (
     "#ff6e54",
     "#ffa600",
   ];
-
   let datasets = [];
-  let takehomePay = new Array(yearlyLabels().length).fill(income);
-  let taxableIncome = new Array(yearlyLabels().length).fill(income);
 
-  const exemptionCount = filingStatus.value === "single" ? 1 : 2;
-
-  if (config.includeStandardDeductions) {
-    const color = colors[colors.length-1];
-    console.log(color)
-    const standardDeductions = getTaxFreeIncome(income, filingStatus.value, 1);
-    taxableIncome = taxableIncome.map(
-      (value, index) =>
-        value -
-        standardDeductions[index].standardDeduction -
-        exemptionCount * standardDeductions[index].personalExemptions
-    );
+  if (taxData.standardDeductions) {
+    const color = colors[colors.length - 1];
     datasets.push({
       label: `Taxable Income`,
-      data: taxableIncome,
+      data: taxData.taxableIncome,
       borderColor: color,
       backgroundColor: color,
       fill: "false",
@@ -188,71 +158,49 @@ export const data = (
     });
   }
 
-  if (config.includeSS) {
+  if (taxData.socialSecurity) {
     const color = colors[0];
-    const ssTaxes = getTaxDataset(
-      "socialSecurity",
-      filingStatus.value,
-      taxableIncome
-    );
     datasets.push({
       label: "SS Taxes",
-      data: ssTaxes,
+      data: taxData.socialSecurity,
       borderColor: color,
       backgroundColor: color,
       fill: true,
       pointRadius: 0,
       borderWidth: 1,
     });
-
-    subtractTaxFromNetIncome(takehomePay, ssTaxes);
   }
-  if (config.includeMedicare) {
+  if (taxData.medicare) {
     const color = colors[1];
-    const medicareTaxes = getTaxDataset(
-      "medicare",
-      filingStatus.value,
-      taxableIncome
-    );
     datasets.push({
       label: "Medicare",
-      data: medicareTaxes,
+      data: taxData.medicare,
       borderColor: color,
       backgroundColor: color,
       fill: true,
       pointRadius: 0,
       borderWidth: 1,
     });
-
-    subtractTaxFromNetIncome(takehomePay, medicareTaxes);
   }
 
-  if (config.includeFederalIncome) {
+  if (taxData.federalIncome) {
     const color = colors[2];
-    const federalIncomeTaxes = getTaxDataset(
-      "federalIncome",
-      filingStatus.value,
-      taxableIncome
-    );
     datasets.push({
       label: `Federal Income Taxes`,
-      data: federalIncomeTaxes,
+      data: taxData.federalIncome,
       borderColor: color,
       backgroundColor: color,
       fill: true,
       pointRadius: 0,
       borderWidth: 1,
     });
-
-    subtractTaxFromNetIncome(takehomePay, federalIncomeTaxes);
   }
 
-
-  if (config.showTakehomePay) {
+  if (taxData.takehomePay) {
     const color = colors[3];
     datasets.push({
       label: `Takehome Pay`,
-      data: takehomePay,
+      data: taxData.takehomePay,
       borderColor: hexToRGBA(color, 0.15),
       backgroundColor: hexToRGBA(color, 0.15),
       fill: true,
@@ -260,17 +208,11 @@ export const data = (
     });
   }
 
-
-  if (config.showMarginalFederalRate) {
-    const color = colors[colors.length-2];
+  if (taxData.federalIncomeMarginal) {
+    const color = colors[colors.length - 2];
     datasets.push({
       label: `Federal Marginal Rate`,
-      data: getTaxDataset(
-        "federalIncome",
-        filingStatus.value,
-        taxableIncome,
-        true
-      ),
+      data: taxData.federalIncomeMarginal,
       borderColor: color,
       backgroundColor: color,
       fill: "false",
@@ -281,7 +223,7 @@ export const data = (
   }
 
   return {
-    labels: yearlyLabels(),
+    labels: taxData.years,
     datasets: datasets,
   };
 };
@@ -294,7 +236,7 @@ const TaxChart: React.FC<TaxChartProps> = ({
   return (
     <div style={{ height: "750px", width: "1200px" }}>
       <Line
-        data={data(income, filingStatus, config)}
+        data={data(getTaxData(income, filingStatus, config))}
         options={options(
           income,
           filingStatus,
