@@ -1,21 +1,29 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
+import { currencyTemplate } from "../utilities/Currency";
 
 import TaxDataTableDetailed from "./TaxDataTableDetailed";
 
 import { TaxData } from "../types/TaxData";
 
-import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
+// import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 import React from "react";
 
 interface TaxDataTableProps {
+  config: any;
+  income: number;
   globalTaxData: TaxData;
 }
 
-const TaxDataTable: React.FC<TaxDataTableProps> = ({ globalTaxData }) => {
+const TaxDataTable: React.FC<TaxDataTableProps> = ({
+  config,
+  income,
+  globalTaxData,
+}) => {
   const [expandedRows, setExpandedRows] = React.useState<any>(null);
-//   const [tableData, setTableData] = React.useState<any>(null);
+  //   const [tableData, setTableData] = React.useState<any>(null);
 
   let rawDataTable = [];
   for (let i = 0; i < globalTaxData.years.length; i++) {
@@ -51,15 +59,7 @@ const TaxDataTable: React.FC<TaxDataTableProps> = ({ globalTaxData }) => {
 
   columns.push({ field: "year", header: "Year" });
 
-  const currencyTemplate = (field: string) => {
-    return (rowData: any) => {
-      return Math.floor(rowData[field]).toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      });
-    };
-  };
+
   if (globalTaxData.standardDeductions) {
     columns.push({
       header: "Standard Deductions",
@@ -122,34 +122,41 @@ const TaxDataTable: React.FC<TaxDataTableProps> = ({ globalTaxData }) => {
   }
 
   const rowExpansionTemplate = (data: any) => {
-    console.log(data, globalTaxData)
-    return <TaxDataTableDetailed data={data} globalTaxData={globalTaxData} />;
+    console.log(data, globalTaxData);
+    return (
+      <TaxDataTableDetailed
+        config={config}
+        income={income}
+        data={data}
+        globalTaxData={globalTaxData}
+      />
+    );
   };
 
-//   const expandAll = () => {
-//     let _expandedRows = {};
+  //   const expandAll = () => {
+  //     let _expandedRows = {};
 
-//     console.log(rawDataTable);
-//     rawDataTable.forEach((d) => (_expandedRows[`${d.id}`] = true));
+  //     console.log(rawDataTable);
+  //     rawDataTable.forEach((d) => (_expandedRows[`${d.id}`] = true));
 
-//     setExpandedRows(_expandedRows);
-//   };
+  //     setExpandedRows(_expandedRows);
+  //   };
 
-//   const collapseAll = () => {
-//     setExpandedRows(null);
-//   };
+  //   const collapseAll = () => {
+  //     setExpandedRows(null);
+  //   };
 
-//   const header = (
-//     <div className="flex flex-wrap justify-content-end gap-2">
-//       <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} text />
-//       <Button
-//         icon="pi pi-minus"
-//         label="Collapse All"
-//         onClick={collapseAll}
-//         text
-//       />
-//     </div>
-//   );
+  //   const header = (
+  //     <div className="flex flex-wrap justify-content-end gap-2">
+  //       <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} text />
+  //       <Button
+  //         icon="pi pi-minus"
+  //         label="Collapse All"
+  //         onClick={collapseAll}
+  //         text
+  //       />
+  //     </div>
+  //   );
 
   return (
     <div className="card">
@@ -163,7 +170,7 @@ const TaxDataTable: React.FC<TaxDataTableProps> = ({ globalTaxData }) => {
         rowExpansionTemplate={rowExpansionTemplate}
         // header={header}
       >
-        <Column expander style={{ width: "5rem" }} />
+        <Column expander />
         {columns.map((col) => (
           <Column
             key={col.field}

@@ -19,7 +19,7 @@ export const yearlyLabels = () => {
 };
 
 // Return the multiplier to get the get the
-const inflationMultiplier = (targetYear: string | number) => {
+export const inflationMultiplier = (targetYear: string | number) => {
   if (typeof targetYear === "number") {
     targetYear = String(targetYear);
   }

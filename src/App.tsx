@@ -114,7 +114,7 @@ function App() {
         config={config}
       />
 
-      <TaxDataTable globalTaxData={taxData} />
+      <TaxDataTable config={config} income={income} globalTaxData={taxData} />
     </>
   );
 }
