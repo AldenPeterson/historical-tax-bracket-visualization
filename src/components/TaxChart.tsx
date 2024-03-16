@@ -17,6 +17,7 @@ import { Line } from "react-chartjs-2";
 import { hexToRGBA } from "../utilities/HexToRGBA";
 
 import { TaxData } from "../types/TaxData";
+import { toUSD } from "../utilities/Formatters";
 
 ChartJS.register(
   CategoryScale,
@@ -161,6 +162,11 @@ const TaxChart: React.FC<TaxChartProps> = ({
         min: 0,
         max: income,
         stacked: true,
+        ticks: {
+          callback: function (value: number) {
+            return toUSD(value);
+          }
+        }
       },
     };
     

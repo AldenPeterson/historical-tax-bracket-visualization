@@ -110,7 +110,6 @@ const TaxDataTableDetailed: React.FC<TaxDataTableProps> = ({
 
 
   return (
-    // <Card title={data.name} style={{ textAlign: "center" }}>
     <div>
       <div
         className="detailed-view"

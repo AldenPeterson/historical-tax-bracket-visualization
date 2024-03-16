@@ -7,7 +7,6 @@ import TaxDataTableDetailed from "./TaxDataTableDetailed";
 
 import { TaxData } from "../types/TaxData";
 
-// import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import React from "react";
 
@@ -23,7 +22,6 @@ const TaxDataTable: React.FC<TaxDataTableProps>  = React.memo(({
   globalTaxData,
 }) => {
   const [expandedRows, setExpandedRows] = React.useState<any>(null);
-  //   const [tableData, setTableData] = React.useState<any>(null);
 
   let rawDataTable = [];
   for (let i = 0; i < globalTaxData.years.length; i++) {
@@ -123,7 +121,6 @@ const TaxDataTable: React.FC<TaxDataTableProps>  = React.memo(({
   }
 
   const rowExpansionTemplate = (data: any) => {
-    console.log(data, globalTaxData);
     return (
       <TaxDataTableDetailed
         config={config}
