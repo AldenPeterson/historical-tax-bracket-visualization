@@ -122,7 +122,8 @@ const TaxDataTable: React.FC<TaxDataTableProps> = ({ globalTaxData }) => {
   }
 
   const rowExpansionTemplate = (data: any) => {
-    return TaxDataTableDetailed(data, globalTaxData)
+    console.log(data, globalTaxData)
+    return <TaxDataTableDetailed data={data} globalTaxData={globalTaxData} />;
   };
 
 //   const expandAll = () => {
