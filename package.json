@@ -1,6 +1,6 @@
 {
   "name": "Historical-tax-bracket-visualization",
-  "homepage": "https://aldenpeterson.github.io/historical-tax-bracket-visualization/",
+  "homepage": "https://aldenpeterson.github.io/historical-tax-bracket-visualization/#",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -20,6 +20,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-currency-input-field": "^3.8.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
     "react-select": "^5.8.0",
     "use-debounce": "^10.0.0"
   },
