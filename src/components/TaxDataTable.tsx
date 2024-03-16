@@ -1,8 +1,8 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
-import { currencyTemplate } from "../utilities/Currency";
 
+import { currencyTemplate, percentageTemplate } from "../utilities/Formatters";
 import TaxDataTableDetailed from "./TaxDataTableDetailed";
 
 import { TaxData } from "../types/TaxData";
@@ -17,7 +17,7 @@ interface TaxDataTableProps {
   globalTaxData: TaxData;
 }
 
-const TaxDataTable: React.FC<TaxDataTableProps> = ({
+const TaxDataTable: React.FC<TaxDataTableProps>  = React.memo(({
   config,
   income,
   globalTaxData,
@@ -102,6 +102,7 @@ const TaxDataTable: React.FC<TaxDataTableProps> = ({
     columns.push({
       header: "Federal Income Marginal",
       field: "federalIncomeMarginal",
+      body: percentageTemplate
     });
   }
   if (globalTaxData.takehomePay) {
@@ -159,9 +160,11 @@ const TaxDataTable: React.FC<TaxDataTableProps> = ({
   //   );
 
   return (
-    <div className="card">
+    // <div className="card">
       <DataTable
         value={rawDataTable}
+        sortField="year"
+        sortOrder={-1}
         showGridlines
         stripedRows
         size="small"
@@ -181,8 +184,7 @@ const TaxDataTable: React.FC<TaxDataTableProps> = ({
           />
         ))}
       </DataTable>
-    </div>
   );
-};
+});
 
 export default TaxDataTable;

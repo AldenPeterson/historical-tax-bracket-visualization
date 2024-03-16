@@ -156,10 +156,6 @@ const TaxChart: React.FC<TaxChartProps> = ({
 
     let yScales: any = {
       x: {
-        title: {
-          display: true,
-          text: "year",
-        },
       },
       y: {
         min: 0,
@@ -243,7 +239,7 @@ const TaxChart: React.FC<TaxChartProps> = ({
     setChartConfig({ data, options });
 
   }, [data, options]);
-  
+
   return (
     <div style={{ height: "750px", width: "1200px" }}>
       <Line

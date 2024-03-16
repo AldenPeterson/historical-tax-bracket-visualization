@@ -80,7 +80,6 @@ export const getTaxDataset = (
   for (let index = 0; index < yearlyLabels().length; index++) {
     const year = yearlyLabels()[index];
 
-    // console.log("Filtering for year", year, "filing status", filingStatus, "and tax type", taxType)
     const matchingBrackets = taxData.filter(
       (taxBracket: TaxBracket) =>
         taxBracket.year === String(year) &&

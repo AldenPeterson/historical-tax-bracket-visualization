@@ -12,3 +12,9 @@ export const currencyTemplate = (field: string) => {
       return toUSD(rowData[field]);
     };
   };
+
+export const percentageTemplate = (field: string) => {
+    return (rowData: any) => {
+      return `${(rowData[field] * 100).toFixed(1)}%`;
+    };
+};

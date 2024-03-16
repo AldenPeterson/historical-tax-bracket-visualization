@@ -17,7 +17,7 @@ export const inputDivStyle = {
   export const inputStyle = {
     width: '250px',
     padding: '8px',
-    height: "20px",
+    height: "30px",
     border: '1px solid #ccc',
     borderRadius: '4px',
     textAlign: 'left' as 'left',

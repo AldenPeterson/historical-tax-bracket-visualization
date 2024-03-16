@@ -40,19 +40,9 @@ let takehomePay = new Array(yearlyLabels().length).fill(income);
 let taxableIncome = new Array(yearlyLabels().length).fill(income);
 const exemptionCount = filingStatus.value === "single" ? 1 : 2;
 
-  if (config.includeStandardDeductions) {
-    const standardDeductions = getTaxFreeIncome(income, filingStatus.value, exemptionCount);
-    taxableIncome = taxableIncome.map(
-      (value, index) =>
-        value -
-        standardDeductions[index].standardDeduction -
-        exemptionCount * standardDeductions[index].personalExemptions
-    );
-    taxData.standardDeductions = standardDeductions;
-    taxData.taxableIncome = taxableIncome;
-  }
 
-  if (config.includeSS) {
+// SS and medicare are before deductions are calculated
+if (config.includeSS) {
     const ssTaxes = getTaxDataset(
       "socialSecurity",
       filingStatus.value,
@@ -72,6 +62,20 @@ const exemptionCount = filingStatus.value === "single" ? 1 : 2;
     subtractTaxFromNetIncome(takehomePay, medicareTaxes.basic);
     taxData.medicare = medicareTaxes;
   }
+  
+  if (config.includeStandardDeductions) {
+    const standardDeductions = getTaxFreeIncome(income, filingStatus.value, exemptionCount);
+    taxableIncome = taxableIncome.map(
+      (value, index) =>
+        Math.max(value -
+        standardDeductions[index].standardDeduction -
+        exemptionCount * standardDeductions[index].personalExemptions,0)
+    );
+    taxData.standardDeductions = standardDeductions;
+    taxData.taxableIncome = taxableIncome;
+  }
+
+
 
   if (config.includeFederalIncome) {
     const federalIncomeTaxes = getTaxDataset(

@@ -42,7 +42,6 @@ function App() {
     ]
   );
   useEffect(() => {
-    console.log("useEffect called");
     setTaxData(getTaxData(income, filingStatus, config));
   }, [
 
@@ -62,7 +61,7 @@ function App() {
         you can see how much you would have been taxed based on historical tax
         brackets if those brackets were inflation adjusted.
       </p>
-      <InputBox value={income} label="2024 Income" setIncome={setIncome} />
+      <InputBox defaultValue={income} label="2024 Income" setIncome={setIncome} />
       <FilingDropdown value={filingStatus} onChange={setFilingStatus} />
       <CheckboxControl
         label="Include Social Security?"
@@ -113,7 +112,6 @@ function App() {
         filingStatus={filingStatus}
         config={config}
       />
-
       <TaxDataTable config={config} income={income} globalTaxData={taxData} />
     </>
   );

@@ -1,10 +1,10 @@
 import { TaxData } from "../types/TaxData";
-import { toUSD } from "../utilities/Currency";
+import { toUSD } from "../utilities/Formatters";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
-import { currencyTemplate } from "../utilities/Currency";
+import { currencyTemplate, percentageTemplate } from "../utilities/Formatters";
 
 import { inflationMultiplier } from "../calculators/TaxCalculation";
 
@@ -27,7 +27,11 @@ const TaxDataTableDetailed: React.FC<TaxDataTableProps> = ({
 
   const detailedDataColumns = (currentYear: number, nominalYear: number) => {
     return [
-      <Column field="taxBracketRate" header="Tax Rate"></Column>,
+      <Column
+        field="taxBracketRate"
+        header="Tax Rate"
+        body={percentageTemplate("taxBracketRate")}
+      ></Column>,
       <Column
         field="nominalTaxBracketMax"
         header={`Bracket Max (${nominalYear})`}
@@ -52,14 +56,9 @@ const TaxDataTableDetailed: React.FC<TaxDataTableProps> = ({
   };
 
   const createDetailedTaxTable = (header: string, data: any, columns: any) => {
-    console.log("header", header);
     return (
       <div>
-        <DataTable
-          value={data}
-          header={header}
-          stripedRows
-        >
+        <DataTable value={data} header={header} stripedRows>
           {columns.map((column: any) => column)}{" "}
         </DataTable>
         <br></br>
@@ -75,7 +74,6 @@ const TaxDataTableDetailed: React.FC<TaxDataTableProps> = ({
       includeMedicare: "medicare",
     };
   };
-
 
   const generateDetailedTaxTables = (
     globalTaxData: any,
@@ -110,18 +108,6 @@ const TaxDataTableDetailed: React.FC<TaxDataTableProps> = ({
     return taxTables;
   };
 
-  //   nominalTaxBracketMax: currentBracketMax,
-  //   realTaxBracketMax: currentBracketMax / yearInflationMultiplier,
-  //   taxBracketRate: currentBracketRate,
-  //   nominalTaxOwed: bracketTaxOwed,
-  //   realTaxOwed: bracketTaxOwed / yearInflationMultiplier,
-
-  //   includeSS,
-  //   includeFederalIncome,
-  //   showMarginalFederalRate,
-  //   showTakehomePay,
-  //   includeMedicare,
-  //   includeStandardDeductions,
 
   return (
     // <Card title={data.name} style={{ textAlign: "center" }}>
