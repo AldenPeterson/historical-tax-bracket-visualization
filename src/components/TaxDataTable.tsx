@@ -1,6 +1,5 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { Button } from "primereact/button";
 
 
 import TaxDataTableDetailed from "./TaxDataTableDetailed";

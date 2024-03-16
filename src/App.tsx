@@ -10,7 +10,7 @@ import FilingDropdown from "./components/FilingDropdown";
 
 import FilingStatuses from "./utilities/FilingStatus";
 import CheckboxControl from "./components/CheckboxControl";
-import { TaxData } from "./types/TaxData";
+
 
 function App() {
   const [income, setIncome] = useState(75000);
