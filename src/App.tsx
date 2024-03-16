@@ -3,11 +3,15 @@ import { useState } from "react";
 import "./App.css";
 
 import TaxChart from "./components/TaxChart";
+import TaxDataTable from "./components/TaxDataTable";
+import { getTaxData } from "./calculators/Data";
 import InputBox from "./components/IncomeInput";
 import FilingDropdown from "./components/FilingDropdown";
 
 import FilingStatuses from "./utilities/FilingStatus";
 import CheckboxControl from "./components/CheckboxControl";
+
+
 
 function App() {
   const [income, setIncome] = useState(75000);
@@ -76,6 +80,10 @@ function App() {
         income={income}
         filingStatus={filingStatus}
         config={config}
+      />
+
+      <TaxDataTable
+        globalTaxData={getTaxData(income, filingStatus, config)}
       />
     </>
   );

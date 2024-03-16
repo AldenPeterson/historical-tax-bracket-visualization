@@ -1,6 +1,6 @@
 export type TaxData = {
     years: number[];
-    standardDeductions: number[] | null;
+    standardDeductions: {standardDeduction: Number, personalExemptions: Number}[] | null;
     medicare: number[] | null;
     socialSecurity: number[] | null;
     federalIncome: number[] | null;
