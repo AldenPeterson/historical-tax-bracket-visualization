@@ -6,7 +6,6 @@ import { Column } from "primereact/column";
 
 import { currencyTemplate } from "../utilities/Currency";
 
-import { Card } from "primereact/card";
 import { inflationMultiplier } from "../calculators/TaxCalculation";
 
 interface TaxDataTableProps {
