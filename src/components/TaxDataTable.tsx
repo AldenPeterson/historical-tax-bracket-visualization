@@ -1,15 +1,23 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { Button } from "primereact/button";
+
+
+import TaxDataTableDetailed from "./TaxDataTableDetailed";
 
 import { TaxData } from "../types/TaxData";
 
 import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
+import React from "react";
 
 interface TaxDataTableProps {
   globalTaxData: TaxData;
 }
 
 const TaxDataTable: React.FC<TaxDataTableProps> = ({ globalTaxData }) => {
+  const [expandedRows, setExpandedRows] = React.useState<any>(null);
+//   const [tableData, setTableData] = React.useState<any>(null);
+
   let rawDataTable = [];
   for (let i = 0; i < globalTaxData.years.length; i++) {
     rawDataTable.push({
@@ -114,9 +122,48 @@ const TaxDataTable: React.FC<TaxDataTableProps> = ({ globalTaxData }) => {
     });
   }
 
+  const rowExpansionTemplate = (data: any) => {
+    return TaxDataTableDetailed(data, globalTaxData)
+  };
+
+//   const expandAll = () => {
+//     let _expandedRows = {};
+
+//     console.log(rawDataTable);
+//     rawDataTable.forEach((d) => (_expandedRows[`${d.id}`] = true));
+
+//     setExpandedRows(_expandedRows);
+//   };
+
+//   const collapseAll = () => {
+//     setExpandedRows(null);
+//   };
+
+//   const header = (
+//     <div className="flex flex-wrap justify-content-end gap-2">
+//       <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} text />
+//       <Button
+//         icon="pi pi-minus"
+//         label="Collapse All"
+//         onClick={collapseAll}
+//         text
+//       />
+//     </div>
+//   );
+
   return (
     <div className="card">
-      <DataTable value={rawDataTable} showGridlines stripedRows size="small">
+      <DataTable
+        value={rawDataTable}
+        showGridlines
+        stripedRows
+        size="small"
+        expandedRows={expandedRows}
+        onRowToggle={(e) => setExpandedRows(e.data)}
+        rowExpansionTemplate={rowExpansionTemplate}
+        // header={header}
+      >
+        <Column expander style={{ width: "5rem" }} />
         {columns.map((col) => (
           <Column
             key={col.field}

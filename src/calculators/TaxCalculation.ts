@@ -76,6 +76,7 @@ export const getTaxDataset = (
 ) : TaxDataSeries => {
   let datasetSeries: TaxDataSeries = { basic: [], detailed: [] };
 
+
   for (let index = 0; index < yearlyLabels().length; index++) {
     const year = yearlyLabels()[index];
 

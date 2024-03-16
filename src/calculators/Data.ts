@@ -24,6 +24,7 @@ export const getTaxData = (
     includeStandardDeductions: boolean;
   }
 ) => {
+    console.log("getting tax data")
 let taxData: TaxData = {
     years: yearlyLabels(),
     standardDeductions: null,

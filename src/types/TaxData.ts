@@ -3,14 +3,14 @@ export type TaxDataSeries = {
     detailed: any;
 }
 
-export type TaxData = {
+export interface TaxData {
     years: number[];
-    standardDeductions: {standardDeduction: Number, personalExemptions: Number}[] | null;
+    standardDeductions: { standardDeduction: number, personalExemptions: number }[] | null;
     medicare: TaxDataSeries | null;
     socialSecurity: TaxDataSeries | null;
     federalIncome: TaxDataSeries | null;
     federalIncomeMarginal: number[] | null;
     takehomePay: number[] | null;
     taxableIncome: number[] | null;
-  };
+}
   

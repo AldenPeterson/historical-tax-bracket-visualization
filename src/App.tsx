@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import "./App.css";
 
@@ -10,8 +10,7 @@ import FilingDropdown from "./components/FilingDropdown";
 
 import FilingStatuses from "./utilities/FilingStatus";
 import CheckboxControl from "./components/CheckboxControl";
-
-
+import { TaxData } from "./types/TaxData";
 
 function App() {
   const [income, setIncome] = useState(75000);
@@ -21,18 +20,38 @@ function App() {
   const [showMarginalFederalRate, setShowMarginalFederalRate] = useState(true);
   const [showTakehomePay, setShowTakehomePay] = useState(true);
   const [includeMedicare, setIncludeMedicare] = useState(true);
-  const [includeStandardDeductions, setIncludeStandardDeductions] = useState(true);
+  const [includeStandardDeductions, setIncludeStandardDeductions] =
+    useState(true);
 
+  const config = useMemo(
+    () => ({
+      includeSS,
+      includeFederalIncome,
+      showMarginalFederalRate,
+      showTakehomePay,
+      includeMedicare,
+      includeStandardDeductions,
+    }),
+    [
+      includeSS,
+      includeFederalIncome,
+      showMarginalFederalRate,
+      showTakehomePay,
+      includeMedicare,
+      includeStandardDeductions,
+    ]
+  );
+  useEffect(() => {
+    console.log("useEffect called");
+    setTaxData(getTaxData(income, filingStatus, config));
+  }, [
 
-  const config = {
-    includeSS,
-    includeFederalIncome,
-    showMarginalFederalRate,
-    showTakehomePay,
-    includeMedicare,
-    includeStandardDeductions
-  };
-  
+    filingStatus,
+    income,
+    config
+  ]);
+
+  const [taxData, setTaxData] = useState(() => getTaxData(income, filingStatus, config));
 
   return (
     <>
@@ -48,43 +67,54 @@ function App() {
       <CheckboxControl
         label="Include Social Security?"
         checked={includeSS}
-        onChange={() => setIncludeSS(!includeSS)}
-      />      
+        onChange={() => {
+          setIncludeSS(!includeSS);
+        }}
+      />
       <CheckboxControl
-      label="Include Medicare?"
-      checked={includeMedicare}
-      onChange={() => setIncludeMedicare(!includeMedicare)}
-    />
+        label="Include Medicare?"
+        checked={includeMedicare}
+        onChange={() => {
+          setIncludeMedicare(!includeMedicare);
+        }}
+      />
       <CheckboxControl
         label="Include Federal Income?"
         checked={includeFederalIncome}
-        onChange={() => setIncludeFederalIncome(!includeFederalIncome)}
+        onChange={() => {
+          setIncludeFederalIncome(!includeFederalIncome);
+        }}
       />
       <CheckboxControl
         label="Show Marginal Federal Rate?"
         checked={showMarginalFederalRate}
-        onChange={() => setShowMarginalFederalRate(!showMarginalFederalRate)}
+        onChange={() => {
+          setShowMarginalFederalRate(!showMarginalFederalRate);
+        }}
       />
       <CheckboxControl
         label="Show Takehome Pay?"
         checked={showTakehomePay}
-        onChange={() => setShowTakehomePay(!showTakehomePay)}
+        onChange={() => {
+          setShowTakehomePay(!showTakehomePay);
+        }}
       />
 
-    <CheckboxControl
+      <CheckboxControl
         label="Include Standard Deductions/Exemptions?"
         checked={includeStandardDeductions}
-        onChange={() => setIncludeStandardDeductions(!includeStandardDeductions)}
+        onChange={() => {
+          setIncludeStandardDeductions(!includeStandardDeductions);
+        }}
       />
       <TaxChart
+        taxData={taxData}
         income={income}
         filingStatus={filingStatus}
         config={config}
       />
 
-      <TaxDataTable
-        globalTaxData={getTaxData(income, filingStatus, config)}
-      />
+      <TaxDataTable globalTaxData={taxData} />
     </>
   );
 }

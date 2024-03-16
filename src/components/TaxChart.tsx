@@ -13,7 +13,6 @@ import {
 
 import { Line } from "react-chartjs-2";
 
-import { getTaxData } from "../calculators/Data";
 
 import { hexToRGBA } from "../utilities/HexToRGBA";
 
@@ -31,6 +30,7 @@ ChartJS.register(
 );
 
 interface TaxChartProps {
+  taxData: TaxData;
   income: number;
   filingStatus: any;
   config: {
@@ -229,6 +229,7 @@ export const data = (taxData: TaxData) => {
 };
 
 const TaxChart: React.FC<TaxChartProps> = ({
+  taxData,
   income,
   filingStatus,
   config,
@@ -236,7 +237,7 @@ const TaxChart: React.FC<TaxChartProps> = ({
   return (
     <div style={{ height: "750px", width: "1200px" }}>
       <Line
-        data={data(getTaxData(income, filingStatus, config))}
+        data={data(taxData)}
         options={options(
           income,
           filingStatus,
