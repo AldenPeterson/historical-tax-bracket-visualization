@@ -60294,7 +60294,6 @@ const subtractTaxFromNetIncome = (netIncome, taxes) => {
   }
 };
 const getTaxData = (income, filingStatus, config2) => {
-  console.log("getting tax data");
   let taxData2 = {
     years: yearlyLabels(),
     standardDeductions: null,
@@ -66360,7 +66359,7 @@ const Calculator = () => {
   ] });
 };
 const App = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(HashRouter, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Calculator, {}) }),
@@ -66369,5 +66368,5 @@ const App = () => {
   ] });
 };
 client.createRoot(document.getElementById("root")).render(
-  /* @__PURE__ */ jsxRuntimeExports.jsx(React.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) })
+  /* @__PURE__ */ jsxRuntimeExports.jsx(React.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(HashRouter, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) }) })
 );
