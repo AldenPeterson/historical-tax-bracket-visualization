@@ -74,8 +74,6 @@ if (config.includeSS) {
     taxData.taxableIncome = taxableIncome;
   }
 
-
-
   if (config.includeFederalIncome) {
     const federalIncomeTaxes = getTaxDataset(
       "federalIncome",
@@ -97,7 +95,10 @@ if (config.includeSS) {
     taxData.federalIncomeMarginal = federalMarginalRate.basic;
   }
 
-  taxData.takehomePay = takehomePay;
+  if (config.showTakehomePay){
+    taxData.takehomePay = takehomePay;
+  }
+
 
   return taxData;
 };
