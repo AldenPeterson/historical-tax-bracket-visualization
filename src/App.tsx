@@ -1,11 +1,13 @@
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import FAQ from "./pages/Faq";
 import Calculator from "./pages/Calculator";
 
 const App = () => {
+
+
   return (
-    <HashRouter>
+    <div>
       <Navbar />
 
       <Routes>
@@ -13,7 +15,7 @@ const App = () => {
         <Route path="/faq" element={<FAQ />}></Route>
         {/* <Route path="/about" element={<About />} /> */}
       </Routes>
-    </HashRouter>
+    </div>
   );
 };
 

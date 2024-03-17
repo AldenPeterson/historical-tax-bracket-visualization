@@ -24,7 +24,6 @@ export const getTaxData = (
     includeStandardDeductions: boolean;
   }
 ) => {
-    console.log("getting tax data")
 let taxData: TaxData = {
     years: yearlyLabels(),
     standardDeductions: null,
@@ -62,7 +61,7 @@ if (config.includeSS) {
     subtractTaxFromNetIncome(takehomePay, medicareTaxes.basic);
     taxData.medicare = medicareTaxes;
   }
-  
+
   if (config.includeStandardDeductions) {
     const standardDeductions = getTaxFreeIncome(income, filingStatus.value, exemptionCount);
     taxableIncome = taxableIncome.map(
