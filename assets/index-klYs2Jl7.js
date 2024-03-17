@@ -60351,7 +60351,9 @@ const getTaxData = (income, filingStatus, config2) => {
     );
     taxData2.federalIncomeMarginal = federalMarginalRate.basic;
   }
-  taxData2.takehomePay = takehomePay;
+  if (config2.showTakehomePay) {
+    taxData2.takehomePay = takehomePay;
+  }
   return taxData2;
 };
 var __assign = function() {
