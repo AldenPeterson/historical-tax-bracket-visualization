@@ -44,7 +44,7 @@ const TaxDataTableDetailed: React.FC<TaxDataTableProps> = ({
       ></Column>,
       <Column
         field="nominalTaxOwed"
-        header={`"Bracket Tax Owed (${nominalYear})`}
+        header={`Bracket Tax Owed (${nominalYear})`}
         body={currencyTemplate("nominalTaxOwed")}
       ></Column>,
       <Column
@@ -127,7 +127,7 @@ const TaxDataTableDetailed: React.FC<TaxDataTableProps> = ({
           {data.year} income: {toUSD(income * inflationFactor)}
         </p>
         <p>
-          {data.year} inflation multiplier: {inflationFactor}
+          {data.year} inflation multiplier: {inflationFactor.toFixed(3)}
         </p>
       </div>
       <div>

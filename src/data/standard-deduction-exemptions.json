@@ -73,5 +73,7 @@
     {"year":2021,"single":12550,"mfj":25100,"type":"absolute","max":null,"exemption":0},
     {"year":2022,"single":12950,"mfj":25900,"type":"absolute","max":null,"exemption":0},
     {"year":2023,"single":13600,"mfj":27200,"type":"absolute","max":null,"exemption":0},
-    {"year":2024,"single":14000,"mfj":28000,"type":"absolute","max":null,"exemption":0}
+    {"year":2024,"single":14000,"mfj":28000,"type":"absolute","max":null,"exemption":0},
+    {"year":2025,"single":15750,"mfj":31500,"type":"absolute","max":null,"exemption":0},
+    {"year":2026,"single":16100,"mfj":32200,"type":"absolute","max":null,"exemption":0}
 ]

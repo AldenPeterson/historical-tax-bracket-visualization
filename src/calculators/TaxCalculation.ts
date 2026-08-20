@@ -3,12 +3,9 @@ import taxData from "../data/taxes.json";
 import { TaxDataSeries } from "../types/TaxData";
 import { TaxBracket } from "../types/TaxBracket";
 import StandardDeductionAndExemptions from "../data/standard-deduction-exemptions.json";
-import inflationMultipliers from "../data/inflation-multipliers.json";
+import inflationRates from "../data/inflation-multipliers.json";
 import { Deduction } from "../types/Deduction";
-
-interface InflationMultipliers {
-  [year: string]: string;
-}
+import { InflationRate } from "../types/InflationRate";
 
 export const yearlyLabels = () => {
   const uniqueYears = [
@@ -18,12 +15,30 @@ export const yearlyLabels = () => {
   return sortedYears;
 };
 
-// Return the multiplier to get the get the
+const rateByYear = new Map(
+  (inflationRates as InflationRate[]).map((entry) => [entry.year, entry.inflationRate])
+);
+
+// "Today's dollars" is the most recent tax year in the dataset (e.g. 2026),
+// entered and shown at face value with no adjustment of its own.
+const anchorYear = () => Math.max(...yearlyLabels());
+
+// Multipliers are chained backward one year at a time from the anchor year:
+// factor(Y) = factor(Y + 1) / (1 + inflationRate(Y)). A year's own published
+// rate is what pulls it below the year after it. Any year at or above the
+// anchor (i.e. without a published rate yet, like the still-in-progress
+// current year) is left at 1.0 - no adjustment until a real rate exists.
 export const inflationMultiplier = (targetYear: string | number) => {
-  if (typeof targetYear === "number") {
-    targetYear = String(targetYear);
+  const year = Number(targetYear);
+  let factor = 1;
+  for (let y = anchorYear() - 1; y >= year; y--) {
+    const rate = rateByYear.get(y);
+    if (rate === undefined) {
+      throw new Error(`No inflation rate found for year ${y}`);
+    }
+    factor /= 1 + rate;
   }
-  return Number((inflationMultipliers as InflationMultipliers)[targetYear]);
+  return factor;
 };
 
 export const getTaxFreeIncome = (

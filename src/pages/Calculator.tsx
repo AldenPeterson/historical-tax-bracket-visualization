@@ -13,6 +13,7 @@ import CheckboxControl from "../components/CheckboxControl";
 
 
 const Calculator: React.FC = () =>{
+  const currentYear = new Date().getFullYear();
   const [income, setIncome] = useState(75000);
   const [filingStatus, setFilingStatus] = useState(FilingStatuses[0]);
   const [includeSS, setIncludeSS] = useState(true);
@@ -61,7 +62,7 @@ const Calculator: React.FC = () =>{
         you can see how much you would have been taxed based on historical tax
         brackets if those brackets were inflation adjusted.
       </p>
-      <InputBox defaultValue={income} label="2024 Income" setIncome={setIncome} />
+      <InputBox defaultValue={income} label={`${currentYear} Income`} setIncome={setIncome} />
       <FilingDropdown value={filingStatus} onChange={setFilingStatus} />
       <CheckboxControl
         label="Include Social Security?"
