@@ -40949,6 +40949,104 @@ Column.displayName = "Column";
 const taxData = [
   {
     taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "24800",
+    rate: "0.1"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "100800",
+    rate: "0.12"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "211400",
+    rate: "0.22"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "403550",
+    rate: "0.24"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "512450",
+    rate: "0.32"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "768700",
+    rate: "0.35"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "",
+    rate: "0.37"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "23850",
+    rate: "0.1"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "96950",
+    rate: "0.12"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "206700",
+    rate: "0.22"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "394600",
+    rate: "0.24"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "501050",
+    rate: "0.32"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "751600",
+    rate: "0.35"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "",
+    rate: "0.37"
+  },
+  {
+    taxType: "federalIncome",
     year: "2024",
     filingStatus: "mfj",
     bracketMax: "23200",
@@ -48198,6 +48296,104 @@ const taxData = [
     filingStatus: "mfj",
     bracketMax: "",
     rate: "0.91"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "12400",
+    rate: "0.1"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "50400",
+    rate: "0.12"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "105700",
+    rate: "0.22"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "201775",
+    rate: "0.24"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "256225",
+    rate: "0.32"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "640600",
+    rate: "0.35"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "",
+    rate: "0.37"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "11925",
+    rate: "0.1"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "48475",
+    rate: "0.12"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "103350",
+    rate: "0.22"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "197300",
+    rate: "0.24"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "250525",
+    rate: "0.32"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "626350",
+    rate: "0.35"
+  },
+  {
+    taxType: "federalIncome",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "",
+    rate: "0.37"
   },
   {
     taxType: "federalIncome",
@@ -56601,6 +56797,34 @@ const taxData = [
   },
   {
     taxType: "socialSecurity",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "176100",
+    rate: "0.062"
+  },
+  {
+    taxType: "socialSecurity",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "",
+    rate: "0"
+  },
+  {
+    taxType: "socialSecurity",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "184500",
+    rate: "0.062"
+  },
+  {
+    taxType: "socialSecurity",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "",
+    rate: "0"
+  },
+  {
+    taxType: "socialSecurity",
     year: "1950",
     filingStatus: "mfj",
     bracketMax: "3000",
@@ -57650,6 +57874,62 @@ const taxData = [
     rate: "0"
   },
   {
+    taxType: "socialSecurity",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "176100",
+    rate: "0.062"
+  },
+  {
+    taxType: "socialSecurity",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "",
+    rate: "0"
+  },
+  {
+    taxType: "socialSecurity",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "184500",
+    rate: "0.062"
+  },
+  {
+    taxType: "socialSecurity",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "",
+    rate: "0"
+  },
+  {
+    taxType: "medicare",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "",
+    rate: "0.0235"
+  },
+  {
+    taxType: "medicare",
+    year: "2026",
+    filingStatus: "single",
+    bracketMax: "200000",
+    rate: "0.0145"
+  },
+  {
+    taxType: "medicare",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "",
+    rate: "0.0235"
+  },
+  {
+    taxType: "medicare",
+    year: "2025",
+    filingStatus: "single",
+    bracketMax: "200000",
+    rate: "0.0145"
+  },
+  {
     taxType: "medicare",
     year: "2024",
     filingStatus: "single",
@@ -58453,6 +58733,34 @@ const taxData = [
     filingStatus: "single",
     bracketMax: "",
     rate: "0"
+  },
+  {
+    taxType: "medicare",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "",
+    rate: "0.0235"
+  },
+  {
+    taxType: "medicare",
+    year: "2026",
+    filingStatus: "mfj",
+    bracketMax: "250000",
+    rate: "0.0145"
+  },
+  {
+    taxType: "medicare",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "",
+    rate: "0.0235"
+  },
+  {
+    taxType: "medicare",
+    year: "2025",
+    filingStatus: "mfj",
+    bracketMax: "250000",
+    rate: "0.0145"
   },
   {
     taxType: "medicare",
@@ -59860,85 +60168,330 @@ const StandardDeductionAndExemptions = [
     type: "absolute",
     max: null,
     exemption: 0
+  },
+  {
+    year: 2025,
+    single: 15750,
+    mfj: 31500,
+    type: "absolute",
+    max: null,
+    exemption: 0
+  },
+  {
+    year: 2026,
+    single: 16100,
+    mfj: 32200,
+    type: "absolute",
+    max: null,
+    exemption: 0
   }
 ];
-const inflationMultipliers = {
-  "1950": "0.078",
-  "1951": "0.079",
-  "1952": "0.086",
-  "1953": "0.087",
-  "1954": "0.088",
-  "1955": "0.088",
-  "1956": "0.088",
-  "1957": "0.089",
-  "1958": "0.092",
-  "1959": "0.095",
-  "1960": "0.096",
-  "1961": "0.097",
-  "1962": "0.098",
-  "1963": "0.099",
-  "1964": "0.101",
-  "1965": "0.102",
-  "1966": "0.103",
-  "1967": "0.106",
-  "1968": "0.110",
-  "1969": "0.114",
-  "1970": "0.121",
-  "1971": "0.128",
-  "1972": "0.133",
-  "1973": "0.137",
-  "1974": "0.146",
-  "1975": "0.162",
-  "1976": "0.177",
-  "1977": "0.187",
-  "1978": "0.199",
-  "1979": "0.214",
-  "1980": "0.238",
-  "1981": "0.271",
-  "1982": "0.299",
-  "1983": "0.317",
-  "1984": "0.327",
-  "1985": "0.341",
-  "1986": "0.354",
-  "1987": "0.360",
-  "1988": "0.373",
-  "1989": "0.389",
-  "1990": "0.407",
-  "1991": "0.429",
-  "1992": "0.447",
-  "1993": "0.461",
-  "1994": "0.474",
-  "1995": "0.487",
-  "1996": "0.500",
-  "1997": "0.515",
-  "1998": "0.527",
-  "1999": "0.536",
-  "2000": "0.548",
-  "2001": "0.566",
-  "2002": "0.582",
-  "2003": "0.591",
-  "2004": "0.605",
-  "2005": "0.621",
-  "2006": "0.642",
-  "2007": "0.663",
-  "2008": "0.681",
-  "2009": "0.707",
-  "2010": "0.705",
-  "2011": "0.716",
-  "2012": "0.739",
-  "2013": "0.754",
-  "2014": "0.766",
-  "2015": "0.778",
-  "2016": "0.779",
-  "2017": "0.789",
-  "2018": "0.805",
-  "2019": "0.825",
-  "2020": "0.839",
-  "2021": "0.850",
-  "2022": "0.889",
-  "2023": "0.961",
-  "2024": "1.000"
-};
+const inflationRates = [
+  {
+    year: 2025,
+    inflationRate: 0.026
+  },
+  {
+    year: 2024,
+    inflationRate: 0.029
+  },
+  {
+    year: 2023,
+    inflationRate: 0.041
+  },
+  {
+    year: 2022,
+    inflationRate: 0.08
+  },
+  {
+    year: 2021,
+    inflationRate: 0.047
+  },
+  {
+    year: 2020,
+    inflationRate: 0.012
+  },
+  {
+    year: 2019,
+    inflationRate: 0.018
+  },
+  {
+    year: 2018,
+    inflationRate: 0.024
+  },
+  {
+    year: 2017,
+    inflationRate: 0.021
+  },
+  {
+    year: 2016,
+    inflationRate: 0.013
+  },
+  {
+    year: 2015,
+    inflationRate: 1e-3
+  },
+  {
+    year: 2014,
+    inflationRate: 0.016
+  },
+  {
+    year: 2013,
+    inflationRate: 0.015
+  },
+  {
+    year: 2012,
+    inflationRate: 0.021
+  },
+  {
+    year: 2011,
+    inflationRate: 0.032
+  },
+  {
+    year: 2010,
+    inflationRate: 0.016
+  },
+  {
+    year: 2009,
+    inflationRate: -4e-3
+  },
+  {
+    year: 2008,
+    inflationRate: 0.038
+  },
+  {
+    year: 2007,
+    inflationRate: 0.029
+  },
+  {
+    year: 2006,
+    inflationRate: 0.032
+  },
+  {
+    year: 2005,
+    inflationRate: 0.034
+  },
+  {
+    year: 2004,
+    inflationRate: 0.027
+  },
+  {
+    year: 2003,
+    inflationRate: 0.023
+  },
+  {
+    year: 2002,
+    inflationRate: 0.016
+  },
+  {
+    year: 2001,
+    inflationRate: 0.028
+  },
+  {
+    year: 2e3,
+    inflationRate: 0.034
+  },
+  {
+    year: 1999,
+    inflationRate: 0.022
+  },
+  {
+    year: 1998,
+    inflationRate: 0.016
+  },
+  {
+    year: 1997,
+    inflationRate: 0.023
+  },
+  {
+    year: 1996,
+    inflationRate: 0.029
+  },
+  {
+    year: 1995,
+    inflationRate: 0.028
+  },
+  {
+    year: 1994,
+    inflationRate: 0.026
+  },
+  {
+    year: 1993,
+    inflationRate: 0.03
+  },
+  {
+    year: 1992,
+    inflationRate: 0.03
+  },
+  {
+    year: 1991,
+    inflationRate: 0.042
+  },
+  {
+    year: 1990,
+    inflationRate: 0.054
+  },
+  {
+    year: 1989,
+    inflationRate: 0.048
+  },
+  {
+    year: 1988,
+    inflationRate: 0.041
+  },
+  {
+    year: 1987,
+    inflationRate: 0.037
+  },
+  {
+    year: 1986,
+    inflationRate: 0.019
+  },
+  {
+    year: 1985,
+    inflationRate: 0.035
+  },
+  {
+    year: 1984,
+    inflationRate: 0.043
+  },
+  {
+    year: 1983,
+    inflationRate: 0.032
+  },
+  {
+    year: 1982,
+    inflationRate: 0.061
+  },
+  {
+    year: 1981,
+    inflationRate: 0.103
+  },
+  {
+    year: 1980,
+    inflationRate: 0.135
+  },
+  {
+    year: 1979,
+    inflationRate: 0.113
+  },
+  {
+    year: 1978,
+    inflationRate: 0.076
+  },
+  {
+    year: 1977,
+    inflationRate: 0.065
+  },
+  {
+    year: 1976,
+    inflationRate: 0.057
+  },
+  {
+    year: 1975,
+    inflationRate: 0.091
+  },
+  {
+    year: 1974,
+    inflationRate: 0.111
+  },
+  {
+    year: 1973,
+    inflationRate: 0.062
+  },
+  {
+    year: 1972,
+    inflationRate: 0.033
+  },
+  {
+    year: 1971,
+    inflationRate: 0.043
+  },
+  {
+    year: 1970,
+    inflationRate: 0.058
+  },
+  {
+    year: 1969,
+    inflationRate: 0.055
+  },
+  {
+    year: 1968,
+    inflationRate: 0.043
+  },
+  {
+    year: 1967,
+    inflationRate: 0.028
+  },
+  {
+    year: 1966,
+    inflationRate: 0.03
+  },
+  {
+    year: 1965,
+    inflationRate: 0.016
+  },
+  {
+    year: 1964,
+    inflationRate: 0.013
+  },
+  {
+    year: 1963,
+    inflationRate: 0.012
+  },
+  {
+    year: 1962,
+    inflationRate: 0.012
+  },
+  {
+    year: 1961,
+    inflationRate: 0.011
+  },
+  {
+    year: 1960,
+    inflationRate: 0.015
+  },
+  {
+    year: 1959,
+    inflationRate: 0.0108
+  },
+  {
+    year: 1958,
+    inflationRate: 0.027
+  },
+  {
+    year: 1957,
+    inflationRate: 0.033
+  },
+  {
+    year: 1956,
+    inflationRate: 0.015
+  },
+  {
+    year: 1955,
+    inflationRate: -3e-3
+  },
+  {
+    year: 1954,
+    inflationRate: 3e-3
+  },
+  {
+    year: 1953,
+    inflationRate: 8e-3
+  },
+  {
+    year: 1952,
+    inflationRate: 0.023
+  },
+  {
+    year: 1951,
+    inflationRate: 0.079
+  },
+  {
+    year: 1950,
+    inflationRate: 0.011
+  }
+];
 const yearlyLabels = () => {
   const uniqueYears = [
     ...new Set(taxData.map((item2) => Number(item2.year)))
@@ -59946,11 +60499,21 @@ const yearlyLabels = () => {
   const sortedYears = uniqueYears.sort((a, b2) => Number(a) - Number(b2));
   return sortedYears;
 };
+const rateByYear = new Map(
+  inflationRates.map((entry) => [entry.year, entry.inflationRate])
+);
+const anchorYear = () => Math.max(...yearlyLabels());
 const inflationMultiplier = (targetYear) => {
-  if (typeof targetYear === "number") {
-    targetYear = String(targetYear);
+  const year = Number(targetYear);
+  let factor = 1;
+  for (let y2 = anchorYear() - 1; y2 >= year; y2--) {
+    const rate = rateByYear.get(y2);
+    if (rate === void 0) {
+      throw new Error(`No inflation rate found for year ${y2}`);
+    }
+    factor /= 1 + rate;
   }
-  return Number(inflationMultipliers[targetYear]);
+  return factor;
 };
 const getTaxFreeIncome = (income, filingStatus, exemptions) => {
   let datasetSeries = new Array(yearlyLabels().length).fill(0);
@@ -60075,7 +60638,7 @@ const TaxDataTableDetailed = ({
         Column,
         {
           field: "nominalTaxOwed",
-          header: `"Bracket Tax Owed (${nominalYear})`,
+          header: `Bracket Tax Owed (${nominalYear})`,
           body: currencyTemplate("nominalTaxOwed")
         }
       ),
@@ -60152,7 +60715,7 @@ const TaxDataTableDetailed = ({
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
             data.year,
             " inflation multiplier: ",
-            inflationFactor
+            inflationFactor.toFixed(3)
           ] })
         ]
       }
@@ -66249,6 +66812,7 @@ const CheckboxControl = ({ label, checked, onChange: onChange2 }) => /* @__PURE_
   label
 ] }) });
 const Calculator = () => {
+  const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
   const [income, setIncome] = reactExports.useState(75e3);
   const [filingStatus, setFilingStatus] = reactExports.useState(FilingStatuses[0]);
   const [includeSS, setIncludeSS] = reactExports.useState(true);
@@ -66286,7 +66850,7 @@ const Calculator = () => {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Welcome to Historical Tax Rate Simulator" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { textAlign: "left" }, children: "Have you ever wondered what your current income would be taxed, at historical periods? By entering an income and selecting a filing status, you can see how much you would have been taxed based on historical tax brackets if those brackets were inflation adjusted." }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(InputBox, { defaultValue: income, label: "2024 Income", setIncome }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(InputBox, { defaultValue: income, label: `${currentYear} Income`, setIncome }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(FilingDropdown, { value: filingStatus, onChange: setFilingStatus }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       CheckboxControl,
